@@ -2,6 +2,17 @@
 using System.Collections;
 
 public static class Ease {
+	public static bool Approx(float one, float two){
+		if(Mathf.Abs (one) - Mathf.Abs(two) < .1) return true;
+		return false;
+	}
+	public static bool Approx(Vector3 one, Vector3 two){
+		if((Mathf.Abs (one.x) - Mathf.Abs(two.x) < .1) &&
+	  	   (Mathf.Abs (one.y) - Mathf.Abs(two.y) < .1) &&
+		   (Mathf.Abs (one.z) - Mathf.Abs(two.z) < .1)) return true;
+		return false;
+	}
+
 	public static int RandomInt(int min, int max){ // max is inclusive
 		return Random.Range(min, max);
 	}

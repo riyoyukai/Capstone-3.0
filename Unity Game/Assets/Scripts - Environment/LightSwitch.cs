@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UILightSwitch : MonoBehaviour {
+public class LightSwitch : MonoBehaviour {
 
 	public MeshRenderer meshRenderer;
 	public Material dayMat;

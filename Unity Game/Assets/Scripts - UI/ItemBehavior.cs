@@ -17,7 +17,7 @@ public class ItemBehavior : MonoBehaviour {
 	void Start(){
 		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
 		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<SpriteRenderer>();
-		inventoryController = GameObject.Find("InventoryController").GetComponent<InventoryController>();
+		inventoryController = GameObject.FindGameObjectWithTag("InventoryController").GetComponent<InventoryController>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
