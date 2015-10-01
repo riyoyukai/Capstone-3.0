@@ -2,45 +2,64 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Pathfinder {
+public class Pathfinder : MonoBehaviour {
+	
+	private float extentsX = 3;
+	public Floor[] floors;
 
-	public List<Vector3> nodes = new List<Vector3>();
-	public int counter;
-	public float time = 0;
-	bool next = false;
-	Vector3 pos = Vector3.zero;
+	public List<Vector3> GetPath(Vector3 start, Vector3 end){
+		List<Vector3> path = new List<Vector3>();
+		
+		path.Add(start);
 
-	public Pathfinder(){ }
-
-	public Vector3 Update(float deltaTime){
-		time += deltaTime * .1f;
-
-		if(time > 1){
-			time = 1;
-			next = true;
+		Floor floorCurr = FindNearestFloor(start);
+		Floor floorEnd = FindNearestFloor(end);
+		
+		while (floorCurr != floorEnd) {
+			if (floorCurr.transform.position.y < floorEnd.transform.position.y) {
+				// find the ladder that goes up:
+				Ladder ladder = floorCurr.ladderUp;
+				// ask the ladder for the points at bottom and top:
+				path.Add(ladder.GetBottomPoint());
+				path.Add(ladder.GetTopPoint());
+				// set the current floor to the next floor:
+				floorCurr = ladder.floorUp;
+			} else {
+				// find the ladder that goes down:
+				Ladder ladder = floorCurr.ladderDn;
+				// ask the ladder for the points at bottom and top:
+				path.Add(ladder.GetTopPoint());
+				path.Add(ladder.GetBottomPoint());
+				// set the current floor to the next floor:
+				floorCurr = ladder.floorDn;
+			}
 		}
+		
+		path.Add(end);
 
-		if(counter < nodes.Count-1){
-			pos = Vector3.Lerp(nodes[counter], nodes[counter+1], time);
-		}
-
-		if(next){
-			NextNode();
-		}
-
-		return pos;
+		return path;
 	}
 
-	public void Reset(){
-		nodes.Clear();
-		counter = 0;
-		time = 0;
+	Floor FindNearestFloor(Vector3 pt) {
+		float dis = float.MaxValue;
+		Floor result = null;
+		foreach(Floor floor in floors) {
+			float d = Mathf.Abs(floor.SurfaceY() - pt.y);
+			if(d < dis) {
+				result = floor;
+				dis = d;
+			}
+		}
+		return result;
 	}
-
-	public void NextNode(){
-		time = 0;
-		counter++;
-		next = false;
+	
+	public Vector3 RandomPoint() {
+		int index = Random.Range(0, floors.Length);
+		
+		Vector3 result = new Vector3(0, 0, 0);
+		result.x = Random.Range(-extentsX, extentsX);
+		result.y = floors[index].SurfaceY();
+		return result;
 	}
 
 }

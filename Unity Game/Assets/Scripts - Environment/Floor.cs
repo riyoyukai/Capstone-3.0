@@ -3,13 +3,11 @@ using System.Collections;
 
 public class Floor : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+	public Ladder ladderUp;
+	public Ladder ladderDn;
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public float SurfaceY() {
+		Bounds bounds = GetComponent<BoxCollider2D>().bounds;
+		return transform.position.y + bounds.size.y/2 + .05f;
 	}
 }
