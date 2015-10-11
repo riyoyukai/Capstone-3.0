@@ -6,7 +6,7 @@ public class LightSwitch : MonoBehaviour {
 	public MeshRenderer meshRenderer;
 	public Material dayMat;
 	public Material nightMat;
-	public Light light;
+	public Light envLight;
 
 	public GameObject switchOn;
 	public GameObject switchOff;
@@ -16,10 +16,10 @@ public class LightSwitch : MonoBehaviour {
 	void OnMouseUp(){
 		if(on){ // turn light off
 			meshRenderer.material = nightMat;
-			light.intensity = .3f;
+			envLight.intensity = .3f;
 		}else{
 			meshRenderer.material = dayMat;
-			light.intensity = 1;
+			envLight.intensity = 1;
 		} // turn light on
 
 		on = !on;

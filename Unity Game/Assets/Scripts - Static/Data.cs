@@ -7,11 +7,11 @@ using System.IO;
 public static class Data {
 
 	/**** Save Data ****/
-	string petName;
-	int xp;
-	int level;
-	int manners;
-	int stuff;
+//	string petName;
+//	int xp;
+	public static int level;
+//	int manners;
+//	int stuff;
 	// enums?
 	// TODO: more of this
 	/**** End Save Data ****/
@@ -61,7 +61,7 @@ public static class Data {
 			Debug.Log ("xp: " + game.xp);
 			Debug.Log ("lvl: " + game.lvl);
 		}catch(Exception e){
-			Debug.Log ("Something went wrong while loading");
+			Debug.Log ("Something went wrong while loading.\nException: " + e.ToString());
 		}finally{
 			if(fs != null) fs.Close();
 		}

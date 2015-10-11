@@ -43,8 +43,8 @@ public class InventoryController : MonoBehaviour {
 	public void PopulateInventory(){
 		for(int i = 0; i < itemDocks.Length && GameData.inventory.Count > i; i++){
 			if(GameData.inventory[i] != null){
-				Vector3 newPos = itemDocks[i].transform.position;
-				GameObject newItem = Instantiate(newUIItemDraggable, newPos, newUIItemDraggable.rotation) as GameObject;
+//				Vector3 newPos = itemDocks[i].transform.position;
+//				GameObject newItem = Instantiate(newUIItemDraggable, newPos, newUIItemDraggable.rotation) as GameObject;
 //				print ("Blarg. null? " + (newItem == null));
 				// TODO: 
 //				UIItemDraggable newItemDraggable = newItem.GetComponent<UIItemDraggable>();

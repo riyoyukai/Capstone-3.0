@@ -26,7 +26,7 @@ public class Monster {
 
 	public void Update(){
 		hunger -= Time.deltaTime;
-		UIController.instance.UpdatePetStats(hunger);
+		//UIController.instance.UpdatePetStats(hunger);
 		if(!hungry && hunger/100 < .3){
 			hungry = true;
 			UIController.instance.Alert("I'm hungry!");
