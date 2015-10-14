@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Monster {
 	private float hunger = 35; // percent
@@ -8,6 +9,7 @@ public class Monster {
 	private int level;
 	private int xpToNextLevel;
 	private int totalXP;
+	public MonsterBehavior monsterController;
 
 	//private int sleepThisLong = 8; // hours
 	//private float sleepiness = 100; // percent
@@ -30,6 +32,17 @@ public class Monster {
 		if(!hungry && hunger/100 < .3){
 			hungry = true;
 			UIController.instance.Alert("I'm hungry!");
+			GameObject[] itemGOs = GameObject.FindGameObjectsWithTag("Item");
+			List<ItemBehavior> food = new List<ItemBehavior>();
+			for(int i = 0; i < itemGOs.Length; i++){
+				ItemBehavior item = itemGOs[i].GetComponent<ItemBehavior>();
+				if(item.item.type == ItemType.Food){
+					food.Add(item);
+				}
+			}
+			if(food.Count > 0 && monsterController != null){
+				monsterController.BeginAnimWalk(food[Ease.RandomInt(0, food.Count - 1)]);
+			}
 		}
 	}
 

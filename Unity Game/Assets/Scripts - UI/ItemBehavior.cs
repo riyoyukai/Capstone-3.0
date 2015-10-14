@@ -4,7 +4,7 @@ using System.Collections;
 
 public class ItemBehavior : MonoBehaviour {
 
-	private Item item;
+	public Item item;
 	private bool followMouse = false;
 	private GameObject inventoryButton;
 	private SpriteRenderer trash;
@@ -15,6 +15,7 @@ public class ItemBehavior : MonoBehaviour {
 	/// Initializes various variables for later access
 	/// </summary>
 	void Start(){
+		item = new Item("Food"); // TODO: remove from testing
 		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
 		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<SpriteRenderer>();
 		// TODO: uncomment this and make it work

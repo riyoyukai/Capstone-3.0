@@ -15,10 +15,12 @@ public class MonsterBehavior : MonoBehaviour {
 		Idle,
 		Walk,
 		Turn,
+		FindFood,
 		Eat
 	}
 
 	private float eatTimer = 0;
+	private ItemBehavior targetItem;
 	
 	private Facing facing = Facing.Right;
 	private Facing facingTarget;
@@ -29,7 +31,8 @@ public class MonsterBehavior : MonoBehaviour {
 	private Vector3 facingRight = new Vector3(0, 1, 0);
 	private Vector3 facingAway = new Vector3(0, 270, 0);
 	private Vector3 facingForward = new Vector3(0, 90, 0);
-
+	
+	private AnimState lastState = AnimState.Walk;
 	private AnimState state = AnimState.Walk;
 
 	// variables for animating walk
@@ -45,21 +48,24 @@ public class MonsterBehavior : MonoBehaviour {
 	float idleTimerMax = 10;
 
 	// link to monster class
-	private Monster monster = new Monster();
+	private Monster monster;
 
 	// TODO: delete this
 	public GameObject testItem;
 
 	// Use this for initialization
 	void Start () {
+		GameData.activeMonster = new Monster(); // TODO: remove from testing
+		monster = GameData.activeMonster;
+		monster.monsterController = this;
 		pathfinder = GetComponent<Pathfinder>();
-		BeginAnimWalk();
+		BeginAnimWalk(null);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		UpdateMovement();
-		monster.Update ();
+		monster.Update();
 	}
 
 	private void UpdateMovement(){
@@ -67,6 +73,7 @@ public class MonsterBehavior : MonoBehaviour {
 			case AnimState.Idle:
 				AnimIdle ();
 				break;
+			case AnimState.FindFood:
 			case AnimState.Walk:
 				AnimWalk ();
 				break;
@@ -78,13 +85,24 @@ public class MonsterBehavior : MonoBehaviour {
 				break;
 		}
 	}
-
+	
 	private void BeginAnimEat(){
-
+		print("Eating...");
+		state = AnimState.Eat;
+		eatTimer = 3f;
 	}
-
+	
 	private void AnimEat(){
-
+		eatTimer -= Time.deltaTime;
+		if(eatTimer <= 0){
+			eatTimer = 0;
+			print ("Done eating, time to react!");
+			Destroy(targetItem.gameObject);
+			monster.EatFood();
+			// TODO: polite/rude reaction here
+			lastState = AnimState.Walk;
+			BeginAnimIdle();
+		}
 	}
 
 	private void CheckForTurn(){
@@ -111,6 +129,7 @@ public class MonsterBehavior : MonoBehaviour {
 	
 	private void BeginAnimTurn(Vector3 whichWay){
 		print ("Turning...");
+		lastState = state;
 		state = AnimState.Turn;
 		turnLocation = transform.rotation;
 		turnDestination = whichWay;
@@ -125,7 +144,7 @@ public class MonsterBehavior : MonoBehaviour {
 
 		if(turnTimer >= 1){
 			turnTimer = 1;
-			state = AnimState.Walk;
+			state = lastState;
 			facing = facingTarget;
 		}
 	}
@@ -141,16 +160,25 @@ public class MonsterBehavior : MonoBehaviour {
 		idleTimer -= Time.deltaTime;
 		if(idleTimer <= 0){
 			idleTimer = 0;
-			BeginAnimWalk();
+			BeginAnimWalk(null);
 		}
 	}
 
-	private void BeginAnimWalk(){
-		print ("Walking...");
+	public void BeginAnimWalk(ItemBehavior target){
 		state = AnimState.Walk;
 		// Pick a new point, and generate a path to it.
 		// Also, reset animation variables.
-		Vector3 destination = pathfinder.RandomPoint();
+		Vector3 destination;
+		if(target != null){
+			print ("Finding food...");
+			targetItem = target;
+			state = AnimState.FindFood;
+			destination = target.transform.position;
+		}else{
+			print ("Walking...");
+			state = AnimState.Walk;
+			destination = pathfinder.RandomPoint();
+		}
 		animatePath = pathfinder.GetPath(transform.position, destination);
 		animateTimer = 0;
 		animateStep = 0;
@@ -194,7 +222,12 @@ public class MonsterBehavior : MonoBehaviour {
 					// the last position in the array.
 					
 					transform.position = animatePath[animatePath.Count - 1];
-					BeginAnimIdle();
+					if(state == AnimState.FindFood){
+						print ("Food reached");
+						BeginAnimEat();
+					}else{
+						BeginAnimIdle();
+					}
 				}
 			}else if (animateStep < animatePath.Count - 1) {
 				

@@ -34,8 +34,9 @@ public class Pathfinder : MonoBehaviour {
 				floorCurr = ladder.floorDn;
 			}
 		}
-		
-		path.Add(end);
+
+		path.Add(new Vector3(end.x, floorEnd.SurfaceY(), end.z));
+		//path.Add(end);
 
 		return path;
 	}
