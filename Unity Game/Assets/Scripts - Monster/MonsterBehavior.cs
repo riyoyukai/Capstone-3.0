@@ -14,9 +14,11 @@ public class MonsterBehavior : MonoBehaviour {
 	enum AnimState {
 		Idle,
 		Walk,
+		Climb,
 		Turn,
 		FindFood,
-		Eat
+		Eat,
+		Cuddle
 	}
 
 	private float eatTimer = 0;
@@ -61,9 +63,20 @@ public class MonsterBehavior : MonoBehaviour {
 		pathfinder = GetComponent<Pathfinder>();
 		BeginAnimWalk(null);
 	}
+
+	void OnMouseOver(){
+		if(Input.GetMouseButtonDown(0)){
+			if(state == AnimState.Idle || state == AnimState.Walk){
+				BeginAnimCuddle();
+			}
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
+		if(state == AnimState.Cuddle && Input.GetMouseButtonUp(0)){
+			state = lastState;
+		}
 		UpdateMovement();
 		monster.Update();
 	}
@@ -75,6 +88,7 @@ public class MonsterBehavior : MonoBehaviour {
 				break;
 			case AnimState.FindFood:
 			case AnimState.Walk:
+			case AnimState.Climb:
 				AnimWalk ();
 				break;
 			case AnimState.Turn:
@@ -83,7 +97,21 @@ public class MonsterBehavior : MonoBehaviour {
 			case AnimState.Eat:
 				AnimEat();
 				break;
+			case AnimState.Cuddle:
+				AnimCuddle();
+				break;
 		}
+	}
+
+	private void BeginAnimCuddle(){
+		lastState = state;
+		state = AnimState.Cuddle;
+		transform.rotation = Quaternion.Euler(facingForward); //TODO: remove this
+		print ("Cuddling...");
+	}
+
+	private void AnimCuddle(){
+
 	}
 	
 	private void BeginAnimEat(){
@@ -97,8 +125,8 @@ public class MonsterBehavior : MonoBehaviour {
 		if(eatTimer <= 0){
 			eatTimer = 0;
 			print ("Done eating, time to react!");
-			Destroy(targetItem.gameObject);
 			monster.EatFood();
+			Destroy(targetItem.gameObject);
 			// TODO: polite/rude reaction here
 			lastState = AnimState.Walk;
 			BeginAnimIdle();
@@ -198,7 +226,7 @@ public class MonsterBehavior : MonoBehaviour {
 				animateStep++;
 				transform.position = animatePath[animateStep];
 				animateTimer = 0;
-				// TODO: if you want the timing to be different (and thus the
+				// if you want the timing to be different (and thus the
 				// speed to be consistent) between the points in your animation,
 				// you'd want to calculate a new animateTimeScale here, based off
 				// of the distance between the next two points in the animation.
@@ -214,7 +242,10 @@ public class MonsterBehavior : MonoBehaviour {
 					float distance = Vector3.Distance(pt1, pt2);
 					animateTimeScale = (1/distance);
 					if(distance < 1) animateTimeScale = distance/2; // to prevent nyooming
-					
+					// TODO: Check if you're going vertically or horizontally next, and play the correct animation
+					if(state != AnimState.FindFood && transform.position.x == animatePath[animateStep + 1].x){
+						state = AnimState.Climb;
+					}
 					CheckForTurn();
 				} else {
 					
@@ -223,7 +254,7 @@ public class MonsterBehavior : MonoBehaviour {
 					
 					transform.position = animatePath[animatePath.Count - 1];
 					if(state == AnimState.FindFood){
-						print ("Food reached");
+						print ("Food reached. TODO: Check if it's still there");
 						BeginAnimEat();
 					}else{
 						BeginAnimIdle();
@@ -244,10 +275,5 @@ public class MonsterBehavior : MonoBehaviour {
 		}else{
 			print ("We're trying to walk, but there are no points in the path.");
 		}
-	}
-
-	public void EatFood(/*Food foodite*/){
-		// TODO: 
-		monster.EatFood ();
 	}
 }
