@@ -4,6 +4,8 @@ using System.Collections;
 
 public class Popup : MonoBehaviour {
 
+	public Text hatchName;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -23,7 +25,13 @@ public class Popup : MonoBehaviour {
 		this.gameObject.SetActive (false);
 	}
 
-	public void LevelUp(int startXP, int xpToAdd, int level, int xpToNextLevel){
+	public void E_LevelUp(int startXP, int xpToAdd, int level, int xpToNextLevel){
 
+	}
+
+	public void E_Hatch(EggBehavior egg){
+		egg.Hatch();
+		print ("\""+hatchName.text+"\"");
+		ClosePopup();
 	}
 }

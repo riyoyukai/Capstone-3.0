@@ -1,0 +1,839 @@
+fileFormatVersion: 2
+guid: 26f2cb0aa2c1b694baa8c5525c79d69a
+timeCreated: 1446080861
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: bn_base01
+    100002: bn_chest01
+    100004: bn_ear01.L
+    100006: bn_ear01.R
+    100008: bn_ear02.L
+    100010: bn_ear02.L_end
+    100012: bn_ear02.R
+    100014: bn_ear02.R_end
+    100016: bn_elbow01.L
+    100018: bn_elbow01.L_end
+    100020: bn_elbow01.R
+    100022: bn_elbow01.R_end
+    100024: bn_head_01
+    100026: bn_hip01
+    100028: bn_hip02
+    100030: bn_lowArm01.L
+    100032: bn_lowArm01.L_end
+    100034: bn_lowArm01.R
+    100036: bn_lowArm01.R_end
+    100038: bn_neck01
+    100040: bn_nose01
+    100042: bn_shoulder01.L
+    100044: bn_shoulder01.R
+    100046: bn_snout01
+    100048: bn_snout01_end
+    100050: bn_Sprinkles
+    100052: bn_upArm01.L
+    100054: bn_upArm01.R
+    100056: bn_wrist01.L
+    100058: bn_wrist01.L_end
+    100060: bn_wrist01.R
+    100062: bn_wrist01.R_end
+    100064: Camera
+    100066: Cube
+    100068: Lamp
+    100070: //RootNode
+    400000: bn_base01
+    400002: bn_chest01
+    400004: bn_ear01.L
+    400006: bn_ear01.R
+    400008: bn_ear02.L
+    400010: bn_ear02.L_end
+    400012: bn_ear02.R
+    400014: bn_ear02.R_end
+    400016: bn_elbow01.L
+    400018: bn_elbow01.L_end
+    400020: bn_elbow01.R
+    400022: bn_elbow01.R_end
+    400024: bn_head_01
+    400026: bn_hip01
+    400028: bn_hip02
+    400030: bn_lowArm01.L
+    400032: bn_lowArm01.L_end
+    400034: bn_lowArm01.R
+    400036: bn_lowArm01.R_end
+    400038: bn_neck01
+    400040: bn_nose01
+    400042: bn_shoulder01.L
+    400044: bn_shoulder01.R
+    400046: bn_snout01
+    400048: bn_snout01_end
+    400050: bn_Sprinkles
+    400052: bn_upArm01.L
+    400054: bn_upArm01.R
+    400056: bn_wrist01.L
+    400058: bn_wrist01.L_end
+    400060: bn_wrist01.R
+    400062: bn_wrist01.R_end
+    400064: Camera
+    400066: Cube
+    400068: Lamp
+    400070: //RootNode
+    4300000: Cube
+    7400000: Idle
+    7400002: Walk
+    7400004: Eat
+    7400006: Sleepy
+    7400008: Polite
+    7400010: EatIn
+    7400012: EatOut
+    9500000: //RootNode
+    13700000: Cube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk
+      takeName: bn_Sprinkles|bn_SprinklesAction
+      firstFrame: 20
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_Sprinkles
+        weight: 1
+      - path: bn_Sprinkles/bn_base01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L/bn_elbow01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R/bn_elbow01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L/bn_ear02.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R/bn_ear02.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01/bn_snout01_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L/bn_lowArm01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R/bn_lowArm01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L/bn_wrist01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R/bn_wrist01.R_end
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Lamp
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: EatIn
+      takeName: bn_Sprinkles|bn_SprinklesAction
+      firstFrame: 41
+      lastFrame: 51
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_Sprinkles
+        weight: 1
+      - path: bn_Sprinkles/bn_base01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L/bn_elbow01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R/bn_elbow01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L/bn_ear02.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R/bn_ear02.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01/bn_snout01_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L/bn_lowArm01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R/bn_lowArm01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L/bn_wrist01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R/bn_wrist01.R_end
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Lamp
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Sleepy
+      takeName: bn_Sprinkles|bn_SprinklesAction
+      firstFrame: 60
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_Sprinkles
+        weight: 1
+      - path: bn_Sprinkles/bn_base01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L/bn_elbow01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R/bn_elbow01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L/bn_ear02.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R/bn_ear02.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01/bn_snout01_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L/bn_lowArm01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R/bn_lowArm01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L/bn_wrist01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R/bn_wrist01.R_end
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Lamp
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Polite
+      takeName: bn_Sprinkles|bn_SprinklesAction
+      firstFrame: 80
+      lastFrame: 96
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_Sprinkles
+        weight: 1
+      - path: bn_Sprinkles/bn_base01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L/bn_elbow01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R/bn_elbow01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L/bn_ear02.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R/bn_ear02.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01/bn_snout01_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L/bn_lowArm01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R/bn_lowArm01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L/bn_wrist01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R/bn_wrist01.R_end
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Lamp
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Eat
+      takeName: bn_Sprinkles|bn_SprinklesAction
+      firstFrame: 47
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_Sprinkles
+        weight: 1
+      - path: bn_Sprinkles/bn_base01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L/bn_elbow01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R/bn_elbow01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L/bn_ear02.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R/bn_ear02.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01/bn_snout01_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L/bn_lowArm01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R/bn_lowArm01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L/bn_wrist01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R/bn_wrist01.R_end
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Lamp
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: EatOut
+      takeName: bn_Sprinkles|bn_SprinklesAction
+      firstFrame: 51
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_Sprinkles
+        weight: 1
+      - path: bn_Sprinkles/bn_base01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L/bn_elbow01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R/bn_elbow01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L/bn_ear02.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R/bn_ear02.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01/bn_snout01_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L/bn_lowArm01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R/bn_lowArm01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L/bn_wrist01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R/bn_wrist01.R_end
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Lamp
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: bn_Sprinkles|bn_SprinklesAction
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bn_Sprinkles
+        weight: 1
+      - path: bn_Sprinkles/bn_base01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.L/bn_elbow01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_elbow01.R/bn_elbow01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.L/bn_ear02.L/bn_ear02.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_ear01.R/bn_ear02.R/bn_ear02.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_neck01/bn_head_01/bn_nose01/bn_snout01/bn_snout01_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.L/bn_upArm01.L/bn_lowArm01.L/bn_lowArm01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_hip01/bn_hip02/bn_chest01/bn_shoulder01.R/bn_upArm01.R/bn_lowArm01.R/bn_lowArm01.R_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.L/bn_wrist01.L_end
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R
+        weight: 1
+      - path: bn_Sprinkles/bn_base01/bn_wrist01.R/bn_wrist01.R_end
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Lamp
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
