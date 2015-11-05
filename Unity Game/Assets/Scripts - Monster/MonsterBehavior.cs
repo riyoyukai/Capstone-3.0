@@ -53,9 +53,6 @@ public class MonsterBehavior : MonoBehaviour {
 	// link to monster class
 	private Monster monster;
 
-	// TODO: delete this
-	public GameObject testItem;
-
 	// Use this for initialization
 	void Start () {
 		GameData.activeMonster = new Monster(); // TODO: remove from testing
@@ -144,8 +141,7 @@ public class MonsterBehavior : MonoBehaviour {
 
 	private void CheckForTurn(){
 		Vector3 pt1 = transform.position;
-		Vector3 pt2 = animatePath[animateStep+1]; // should not error
-		//TODO: check if we need to turn first
+		Vector3 pt2 = animatePath[animateStep+1];
 		if(pt2.x > pt1.x){ // check to face right
 			if(facing != Facing.Right){
 				facingTarget = Facing.Right;
@@ -201,7 +197,21 @@ public class MonsterBehavior : MonoBehaviour {
 		}
 	}
 
-	public void BeginAnimWalk(ItemBehavior target){
+	public void BeginAnimFindFood(){
+		GameObject[] itemGOs = GameObject.FindGameObjectsWithTag("Item");
+		List<ItemBehavior> food = new List<ItemBehavior>();
+		for(int i = 0; i < itemGOs.Length; i++){
+			ItemBehavior item = itemGOs[i].GetComponent<ItemBehavior>();
+			if(item.item.type == ItemType.Food){
+				food.Add(item);
+			}
+		}
+		if(food.Count > 0){
+			BeginAnimWalk(food[Ease.RandomInt(0, food.Count - 1)]);
+		}
+	}
+
+	private void BeginAnimWalk(ItemBehavior target){
 		ChangeState(AnimState.Walk);
 		// Pick a new point, and generate a path to it.
 		// Also, reset animation variables.
@@ -251,7 +261,6 @@ public class MonsterBehavior : MonoBehaviour {
 					float distance = Vector3.Distance(pt1, pt2);
 					animateTimeScale = (1/distance);
 					if(distance < 1) animateTimeScale = distance/2; // to prevent nyooming
-					// TODO: Check if you're going vertically or horizontally next, and play the correct animation
 					if(state != AnimState.FindFood && transform.position.x == animatePath[animateStep + 1].x){
 						ChangeState(AnimState.Climb);
 					}

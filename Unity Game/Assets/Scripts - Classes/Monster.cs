@@ -32,17 +32,7 @@ public class Monster {
 		if(!hungry && hunger/100 < .3){
 			hungry = true;
 			UIController.instance.Alert("I'm hungry!");
-			GameObject[] itemGOs = GameObject.FindGameObjectsWithTag("Item");
-			List<ItemBehavior> food = new List<ItemBehavior>();
-			for(int i = 0; i < itemGOs.Length; i++){
-				ItemBehavior item = itemGOs[i].GetComponent<ItemBehavior>();
-				if(item.item.type == ItemType.Food){
-					food.Add(item);
-				}
-			}
-			if(food.Count > 0 && monsterController != null){
-				monsterController.BeginAnimWalk(food[Ease.RandomInt(0, food.Count - 1)]);
-			}
+			if(monsterController != null) monsterController.BeginAnimFindFood();
 		}
 	}
 

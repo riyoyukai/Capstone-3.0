@@ -2,8 +2,9 @@
 using System.Collections;
 
 public class LightSwitch : MonoBehaviour {
-
-	public MeshRenderer meshRenderer;
+	
+	public SkinnedMeshRenderer monsterModel;
+	public MeshRenderer eggModel;
 	public Material dayMat;
 	public Material nightMat;
 	public Light envLight;
@@ -15,10 +16,12 @@ public class LightSwitch : MonoBehaviour {
 
 	void OnMouseUp(){
 		if(on){ // turn light off
-			meshRenderer.material = nightMat;
+			monsterModel.material = nightMat;
+			eggModel.material = nightMat;
 			envLight.intensity = .3f;
 		}else{
-			meshRenderer.material = dayMat;
+			monsterModel.material = dayMat;
+			eggModel.material = dayMat;
 			envLight.intensity = 1;
 		} // turn light on
 
