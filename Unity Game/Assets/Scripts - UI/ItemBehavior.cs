@@ -7,7 +7,7 @@ public class ItemBehavior : MonoBehaviour {
 	public Item item;
 	private bool followMouse = false;
 	private GameObject inventoryButton;
-	private SpriteRenderer trash;
+	private Collider trash;
 	private SpriteRenderer spriteRenderer;
 	private InventoryController inventoryController;
 
@@ -17,7 +17,7 @@ public class ItemBehavior : MonoBehaviour {
 	void Start(){
 		item = new Item("Food"); // TODO: remove from testing
 		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
-		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<SpriteRenderer>();
+		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<Collider>();
 		// TODO: uncomment this and make it work
 //		inventoryController = GameObject.FindGameObjectWithTag("InventoryController").GetComponent<InventoryController>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
@@ -32,7 +32,7 @@ public class ItemBehavior : MonoBehaviour {
 		item = pItem;
 		spriteRenderer.sprite = Resources.Load<Sprite>("Textures/" + pItem.textureName);
 		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
-		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<SpriteRenderer>();
+		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<Collider>();
 		inventoryController = GameObject.Find("InventoryController").GetComponent<InventoryController>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
@@ -51,7 +51,9 @@ public class ItemBehavior : MonoBehaviour {
 		
 		Vector3 p = this.transform.position;
 		
-		if(Ease.IsPointWithinSprite(p + new Vector3(0, 2.1f, 0), trash)){
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit hit;
+		if (trash.Raycast(ray, out hit, 100.0F)){
 			print ("Trash item");
 			Destroy (this.gameObject);
 		}
