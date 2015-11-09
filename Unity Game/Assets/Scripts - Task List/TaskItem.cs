@@ -5,12 +5,12 @@ using UnityEngine.UI;
 // this gets connected to the Panel that holds the task item and options panel
 public class TaskItem : MonoBehaviour {
 
-	public GameObject taskItemPanelPrefab;
 	public Button actionButton;
 	public Text actionButtonText;
 	public InputField inputField;
 	public Text text;
 	public GameObject optionsPanel;
+	public TaskList taskList;
 	
 	public bool plus = true;
 	public bool check = false;
@@ -38,22 +38,35 @@ public class TaskItem : MonoBehaviour {
 			plus = false;
 			check = false;
 			delete = true;
-
+			taskList.AddTask(this);
 			// add new 'new task' task item panel
 		}
 		else if (delete) {
-			plus = false;
+			print ("Before: ");
+			foreach(DictionaryEntry de in GameData.tasks){
+				print (de.Key);
+			}
+			GameData.tasks.Remove(text.text);
+			plus = true;
 			check = false;
 			delete = false;
+			actionButtonText.text = "+";
+			inputField.text = "";
 			text.gameObject.SetActive(false);
+			optionsPanel.SetActive(false);
+			
+			print ("After: ");
+			foreach(DictionaryEntry de in GameData.tasks){
+				print (de.Key);
+			}
 		}
 	}
 
 	// called by event trigger on Main Task Panel
 	public void OpenTask(){
 		if (!plus && !check) {
-			print ("Open task");
-			optionsPanel.SetActive (true);
+			print ("Open/close task");
+			optionsPanel.SetActive (!optionsPanel.activeSelf);
 		}
 	}
 }

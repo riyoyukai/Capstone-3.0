@@ -8,7 +8,7 @@ public static class GameData {
 	public static List<Item> inventory = new List<Item>();
 	public static List<Item> envInventory = new List<Item>();
 
-	public static List<Task> tasks = new List<Task>();
+	public static Hashtable tasks = new Hashtable();
 
 	public static void TestInventory(){
 		inventory.Add(new Item("Toy"));

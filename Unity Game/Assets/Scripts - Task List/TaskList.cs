@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TaskList : MonoBehaviour {
+	
+	public GameObject taskItemPanelPrefab;
+	public List<TaskItem> tasks;
 
-	// Use this for initialization
-	void Start () {
-	
+	public void AddTask(TaskItem task){
+		tasks.Add(task);
+		GameData.tasks.Add (task.text.text, new Task(task.text.text));
+		GameObject newTask = Instantiate(taskItemPanelPrefab, LastTaskPosition(), taskItemPanelPrefab.transform.rotation) as GameObject;
+		newTask.transform.SetParent(this.gameObject.transform, false);
+		newTask.transform.position = LastTaskPosition();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	private Vector3 LastTaskPosition(){
+		Vector3 newPos = tasks[tasks.Count-1].gameObject.transform.position;
+		//newPos.y *= (tasks.Count + 1);
+		return newPos;
 	}
 }
