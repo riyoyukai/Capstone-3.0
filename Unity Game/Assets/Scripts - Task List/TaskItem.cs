@@ -10,14 +10,14 @@ public class TaskItem : MonoBehaviour {
 	public InputField inputField;
 	public Text text;
 	public GameObject optionsPanel;
-	public TaskList taskList;
+	private TaskList taskList;
 	
 	public bool plus = true;
 	public bool check = false;
 	public bool delete = false;
 
-	public void Awake(){
-
+	public void Start(){
+		taskList = GameObject.FindGameObjectWithTag ("TaskList").GetComponent<TaskList>();
 	}
 
 	// user tapped + or check.
@@ -31,6 +31,10 @@ public class TaskItem : MonoBehaviour {
 			delete = false;
 		}
 		else if(check){
+			// TODO: limit characters in inputfield to 40
+			// also when a task is deleted, all following tasks must be moved up
+			// and the options panel and stuffff
+			if(inputField.text.Trim() == "") return;
 			text.text = inputField.text;
 			inputField.gameObject.SetActive (false);
 			text.gameObject.SetActive(true);
@@ -42,6 +46,7 @@ public class TaskItem : MonoBehaviour {
 			// add new 'new task' task item panel
 		}
 		else if (delete) {
+			print ("DELETING");
 			print ("Before: ");
 			foreach(DictionaryEntry de in GameData.tasks){
 				print (de.Key);
