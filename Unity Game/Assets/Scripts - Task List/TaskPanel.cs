@@ -10,12 +10,16 @@ public class TaskPanel : MonoBehaviour {
 	public InputField inputField;
 	public Text taskNameLabel;
 	public GameObject optionsPanel;
+
+	// used to add and remove task to the list, and to toggle options
 	private TaskList taskList;
-	
+
+	// these bools keep track of what stage of task creation you're in
 	public bool plus = true;
 	public bool check = false;
 	public bool delete = false;
 
+	// task class that is used in save data
 	public Task task;
 
 	public void Start(){
@@ -52,19 +56,13 @@ public class TaskPanel : MonoBehaviour {
 	
 	// called by event trigger on Main Task Panel
 	public void ToggleOptions(){
-		if (task != null && !plus && !check) {
+		if (task != null) {
 			if(optionsPanel.activeSelf){
-				taskList.CloseOptionsForTask(task.id);
+				CloseOptions();
 			}else{
 				taskList.OpenOptionsForTask(task.id);
 			}
 		}
-	}
-
-	public void ShiftPosition(float amount){
-		Vector3 newPos = transform.position;
-		newPos.y += amount;
-		transform.position = newPos;
 	}
 
 	public void OpenOptions(){
