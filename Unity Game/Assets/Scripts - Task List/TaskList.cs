@@ -16,9 +16,12 @@ public class TaskList : MonoBehaviour {
 		Task newTask = new Task(taskPanel.taskNameLabel.text, taskPanels.Count); 
 		GameData.tasks.Add(taskPanel.taskNameLabel.text, newTask);
 		taskPanel.task = newTask;
-		taskPanel.taskNameLabel.text += " ID: " + taskPanel.task.id;
 
-		GameObject newTaskPanel = Instantiate(taskItemPanelPrefab, taskItemPanelPrefab.transform.position, taskItemPanelPrefab.transform.rotation) as GameObject;
+		GameObject newTaskPanel = Instantiate(
+			taskItemPanelPrefab,
+			taskItemPanelPrefab.transform.position,
+			taskItemPanelPrefab.transform.rotation
+		) as GameObject;
 		newTaskPanel.transform.SetParent(taskPanelGrid.transform, false);
 		newTaskPanel.transform.SetSiblingIndex(0);
 		taskPanels.Add (taskPanel);
@@ -34,7 +37,6 @@ public class TaskList : MonoBehaviour {
 	private void ShiftIDs(int id){
 		for(int i = id; i < taskPanels.Count; i++){
 			taskPanels[i].task.id--;
-			taskPanels[i].taskNameLabel.text += " ID: " + taskPanels[i].task.id;
 		}
 	}
 

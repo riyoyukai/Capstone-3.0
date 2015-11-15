@@ -7,6 +7,8 @@ public class Task {
 	public int id;
 	public System.DateTime dueDate;
 	public System.DateTime reminderDate;
+	
+	public Hashtable subtasks = new Hashtable();
 
 	public Task(string pName, int pId){
 		name = pName;

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class DeadlineController : MonoBehaviour {
+public class OptionsMenu : MonoBehaviour {
 	
 	private int month;
 	private string monthString;
@@ -11,7 +11,8 @@ public class DeadlineController : MonoBehaviour {
 	private int hour;
 	private int minute;
 	private string ampm;
-
+	
+	public Text taskName;
 	public Text deadlineText;
 
 	public InputField hourField;
@@ -29,13 +30,19 @@ public class DeadlineController : MonoBehaviour {
 	private int remindWeeks;
 	private int remindYears;
 
-	void Start(){
+	public Task task;
+
+	public void Open(Task pTask){
+		this.gameObject.SetActive(true);
+		task = pTask;
+		taskName.text = task.name;
+
 		day = (System.DateTime.Today.Day);
 		E_EnterMonth(System.DateTime.Today.Month);
 		year = System.DateTime.Today.Year;
 		hour = System.DateTime.Now.Hour;
 		minute = System.DateTime.Now.Minute;
-
+		
 		hour++;
 		if (hour == 24) {
 			hour = 0;
@@ -60,7 +67,7 @@ public class DeadlineController : MonoBehaviour {
 		ampm = "AM";
 		if(hour > 12) ampm = "PM";
 		ampmField.text = ampm;
-
+		
 		BuildDeadlineText ();
 	}
 
@@ -182,7 +189,12 @@ public class DeadlineController : MonoBehaviour {
 		System.DateTime deadlineDate = new System.DateTime (year, month, day, hour, minute, 0);
 		print ("DEADLINE: " + deadlineDate);
 		//TODO: build date and compare to today. if in the past, give error.
-		print ("Comparing: " + System.DateTime.Compare (deadlineDate, System.DateTime.Now));
-		// if -1, invalid
+		if(System.DateTime.Compare (deadlineDate, System.DateTime.Now) < 0){
+			// if -1, invalid
+		}else{	
+			// give options to task we're editing
+			this.gameObject.SetActive(false);
+			task = null;
+		}
 	}
 }
