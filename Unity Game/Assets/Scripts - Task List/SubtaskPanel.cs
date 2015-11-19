@@ -22,24 +22,17 @@ public class SubtaskPanel : MonoBehaviour {
 
 	void Start(){
 		parentTask = transform.parent.parent.parent.GetComponent<TaskPanel>();
+		inputField.gameObject.SetActive (true);
+		inputField.Select();
+		actionButtonText.text = ((char)0x2713).ToString ();
+		plus = false;
+		check = true;
+		delete = false;
 	}
-
+	
 	// user tapped + or check.
 	public void ActionButtonPressed(){
-//		print ("PRESSING BUTTON.");
-//		print ("Plus: " + plus);
-//		print ("Check: " + check);
-//		print ("Delete: " + delete);
-
-		if (plus) {
-			inputField.gameObject.SetActive (true);
-			inputField.Select();
-			actionButtonText.text = ((char)0x2713).ToString ();
-			plus = false;
-			check = true;
-			delete = false;
-		}
-		else if(check){
+		if(check){
 			// TODO: 
 			// tasks with the same name
 			if(inputField.text.Trim() == "") return;
@@ -51,18 +44,29 @@ public class SubtaskPanel : MonoBehaviour {
 			check = false;
 			delete = true;
 			parentTask.AddSubtask(this);
-			print ("Finish making task");
 		}
 		else if (delete) {
 			parentTask.RemoveSubtask(this);
-			print ("TODO: fix this because it's triggering twice");
-			// NICK: why is this happening at all? nothing should be calling this function!
 		}
-
-//		print ("BUTTON DONE CURRENT STATE:");
-//		print ("Plus: " + plus);
-//		print ("Check: " + check);
-//		print ("Delete: " + delete);
-//		print ("------------------");
+	}	
+	
+	// called by event trigger on Main Task Panel
+	public void ToggleOptions(){
+		if (task != null) {
+			if(optionsPanel.activeSelf){
+				CloseOptions();
+			}else{
+//				taskList.OpenOptionsForTask(task.id);
+				OpenOptions();
+			}
+		}
+	}
+	
+	public void OpenOptions(){
+		optionsPanel.SetActive (true);
+	}
+	
+	public void CloseOptions(){
+		optionsPanel.SetActive(false);
 	}
 }
