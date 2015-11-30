@@ -4,13 +4,12 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour {
 	
-	private int month;
-	private string monthString;
-	private int day;
-	private int year;
-	private int hour;
-	private int minute;
-	private string ampm;
+	public int month;
+	public int day;
+	public int year;
+	public int hour;
+	public int minute;
+	public string ampm;
 	
 	public Text taskName;
 	public Text deadlineText;
@@ -19,16 +18,14 @@ public class OptionsMenu : MonoBehaviour {
 	public InputField minuteField;
 	public InputField dayField;
 	public InputField yearField;
-	public Text ampmField;
+	public Text ampmText;
 	public Text monthText;
-	public GameObject monthOptions;
-	public GameObject ampmOptions;
 	
-	private int remindMinutes;
-	private int remindHours;
-	private int remindDays;
-	private int remindWeeks;
-	private int remindYears;
+	public int remindMinutes;
+	public int remindHours;
+	public int remindDays;
+	public int remindWeeks;
+	public int remindMonths;
 
 	public Task task;
 
@@ -37,8 +34,8 @@ public class OptionsMenu : MonoBehaviour {
 		task = pTask;
 		taskName.text = task.name;
 
-		day = (System.DateTime.Today.Day);
-		E_EnterMonth(System.DateTime.Today.Month);
+		day = System.DateTime.Today.Day;
+		month = System.DateTime.Today.Month;
 		year = System.DateTime.Today.Year;
 		hour = System.DateTime.Now.Hour;
 		minute = System.DateTime.Now.Minute;
@@ -60,15 +57,20 @@ public class OptionsMenu : MonoBehaviour {
 		hourField.text = "" + hour;
 		if(hour == 0) hourField.text = "" + 12;
 		if(hour > 12) hourField.text = "" + (hour-12);
-		minuteField.text = "" + minute;
+		if(minute < 10) minuteField.text = "0" + minute;
+		else minuteField.text = "" + minute;
 		yearField.text = "" + year;
 		dayField.text = "" + day;
 		
 		ampm = "AM";
 		if(hour > 12) ampm = "PM";
-		ampmField.text = ampm;
+		ampmText.text = ampm;
 		
 		BuildDeadlineText ();
+	}
+
+	public void Close(){
+		this.gameObject.SetActive(false);
 	}
 
 	private void BuildDeadlineText(){
@@ -78,29 +80,8 @@ public class OptionsMenu : MonoBehaviour {
 		string hh = "" + (hhInt);
 		string mm = "" + minute;
 		if (minute < 10) mm = "0" + mm;
+		string monthString = new System.DateTime(year, month, day).ToString("MMMM");
 		deadlineText.text = monthString + " " + day + ", " + year + " at " + hh + ":" + mm + " " + ampm;
-	}
-	
-	public void E_EnterMonth(int monthInt){
-		month = monthInt;
-		monthString = "ERROR";
-		switch (monthInt) {
-			case 1: monthString = "January"; break;
-			case 2: monthString = "February"; break;
-			case 3: monthString = "March"; break;
-			case 4: monthString = "April"; break;
-			case 5: monthString = "May"; break;
-			case 6: monthString = "June"; break;
-			case 7: monthString = "July"; break;
-			case 8: monthString = "August"; break;
-			case 9: monthString = "September"; break;
-			case 10: monthString = "October"; break;
-			case 11: monthString = "November"; break;
-			case 12: monthString = "December"; break;
-		}
-		monthText.text = monthString;
-		monthOptions.SetActive (false);
-		BuildDeadlineText ();
 	}
 	
 	public void E_EnterDay(){
@@ -118,6 +99,15 @@ public class OptionsMenu : MonoBehaviour {
 	
 	public void E_EnterYear(){
 		year = int.Parse(yearField.text);
+		int daysInMo = System.DateTime.DaysInMonth (year, month);
+		if (day > daysInMo) {
+			day = daysInMo;
+			dayField.text = "" + day;
+		}
+		if(year < System.DateTime.Today.Year){
+			year = System.DateTime.Today.Year;
+			yearField.text = "" + year;
+		}
 		BuildDeadlineText ();
 	}
 	
@@ -149,40 +139,10 @@ public class OptionsMenu : MonoBehaviour {
 		BuildDeadlineText ();
 	}
 	
-	public void E_EnterAMPM(string ampmString){
-		ampm = ampmString;
-		if (ampm == "PM") {
-			if(hour < 13) hour += 12;
-		}
-		ampmField.text = ampm;
-		ampmOptions.SetActive (false);
-		BuildDeadlineText ();
-	}
-	
 	public void E_PreventNegatives(InputField inpField){
 		if(inpField.text.Contains("-")){
 			inpField.text = inpField.text.Replace("-", "");
 		}
-	}
-	
-	public void E_RemindMinutes(){
-		
-	}
-	
-	public void E_RemindHours(){
-		
-	}
-	
-	public void E_RemindDays(){
-		
-	}
-	
-	public void E_RemindWeeks(){
-		
-	}
-	
-	public void E_RemindMonths(){
-		
 	}
 
 	public void E_Confirm(){

@@ -34,6 +34,9 @@ public class TaskPanel : MonoBehaviour {
 
 	public void Start(){
 		taskList = GameObject.FindGameObjectWithTag("TaskList").GetComponent<TaskList>();
+		if(optionsMenu == null){
+			optionsMenu = taskList.optionsMenu;
+		}
 	}
 
 	// user tapped + or check.
@@ -86,6 +89,8 @@ public class TaskPanel : MonoBehaviour {
 	}
 
 	public void EditTask(){
+		print ("Task: " + this.task);
+		print ("Options: " + optionsMenu);
 		optionsMenu.Open(this.task);
 	}
 
@@ -111,9 +116,12 @@ public class TaskPanel : MonoBehaviour {
 		Task parentTask = (Task) GameData.tasks[subtaskPanel.parentTask.task.name];
 		parentTask.subtasks.Add(newTask.name, newTask);
 		subtaskPanel.task = newTask;
+		newTask.parentTask = task;
 
 		subtaskPanels.Add (subtaskPanel);
 		newSubtaskPanel = null;
+
+		GameData.Save();
 	}
 	
 	public void RemoveSubtask(SubtaskPanel subtaskPanel){
@@ -122,6 +130,8 @@ public class TaskPanel : MonoBehaviour {
 		parentTask.subtasks.Remove(subtaskPanel.task.name);
 		subtaskPanels.Remove(subtaskPanel);
 		Destroy(subtaskPanel.gameObject);
+
+		GameData.Save();
 	}
 	
 	private void ShiftIDs(int id){

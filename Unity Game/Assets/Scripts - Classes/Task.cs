@@ -7,6 +7,8 @@ public class Task {
 	public int id;
 	public System.DateTime dueDate;
 	public System.DateTime reminderDate;
+	public int difficulty;
+	public Task parentTask;
 	
 	public Hashtable subtasks = new Hashtable();
 

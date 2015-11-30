@@ -5,11 +5,38 @@ using System.Collections.Generic;
 public class TaskList : MonoBehaviour {
 	
 	public GameObject taskItemPanelPrefab;
+	public GameObject savedTaskItemPanelPrefab;
 	public GameObject taskPanelGrid;
 	private List<TaskPanel> taskPanels = new List<TaskPanel>();
+	public OptionsMenu optionsMenu;
 
 	void Start(){
+		if(GameData.Load()){
+			print ("loaded data");
+			foreach(DictionaryEntry entry in GameData.tasks){
+				Task t = (Task)entry.Value;
+				print ("Looking at task \"" + t.name + "\"");
+				GameObject newTaskObject = Instantiate(
+					savedTaskItemPanelPrefab,
+					savedTaskItemPanelPrefab.transform.position,
+					savedTaskItemPanelPrefab.transform.rotation
+					) as GameObject;
+				TaskPanel newTask = newTaskObject.GetComponent<TaskPanel>();
 
+				newTask.plus = false;
+				newTask.check = false;
+				newTask.delete = true;
+				newTask.task = t;
+				newTask.taskNameLabel.text = t.name;
+				
+				
+				newTaskObject.transform.SetParent(taskPanelGrid.transform, false);
+				newTaskObject.transform.SetSiblingIndex(1);
+				taskPanels.Add (newTask);
+			}
+		}else{
+			print ("didn't load data");
+		}
 	}
 
 	public void AddTask(TaskPanel taskPanel){
@@ -25,24 +52,24 @@ public class TaskList : MonoBehaviour {
 		newTaskPanel.transform.SetParent(taskPanelGrid.transform, false);
 		newTaskPanel.transform.SetSiblingIndex(0);
 		taskPanels.Add (taskPanel);
+
+		GameData.Save();
 	}
 
 	public void RemoveTask(TaskPanel taskPanel){
 		ShiftIDs(taskPanel.task.id);
 		GameData.tasks.Remove(taskPanel.task.name);
+
 		taskPanels.Remove(taskPanel);
 		Destroy(taskPanel.gameObject);
+
+		GameData.Save();
 	}
 
 	private void ShiftIDs(int id){
 		for(int i = id; i < taskPanels.Count; i++){
 			taskPanels[i].task.id--;
 		}
-	}
-
-	private void MoveInHierarchy(GameObject obj, int delta){
-		int index = obj.transform.GetSiblingIndex();
-		obj.transform.SetSiblingIndex(index + delta);
 	}
 
 	public void OpenOptionsForTask(int id){	
