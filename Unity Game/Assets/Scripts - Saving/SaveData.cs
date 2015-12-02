@@ -8,6 +8,7 @@ using System.IO;
 [Serializable]
 public class SaveData {
 	public List<SaveTask> tasks = new List<SaveTask>();
+	public List<SaveTask> completedTasks = new List<SaveTask>();
 	public SaveMonster monster = new SaveMonster();
 
 	public SaveData(){}

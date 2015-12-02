@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Task {
 
@@ -10,7 +11,7 @@ public class Task {
 	public int difficulty;
 	public Task parentTask;
 	
-	public Hashtable subtasks = new Hashtable();
+	public List<Task> subtasks = new List<Task>();
 
 	public Task(string pName, int pId){
 		name = pName;

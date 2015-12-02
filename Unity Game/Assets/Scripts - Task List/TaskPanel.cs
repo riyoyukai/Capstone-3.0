@@ -6,8 +6,11 @@ using System.Collections.Generic;
 // this gets connected to the Panel that holds the task item and options panel
 public class TaskPanel : MonoBehaviour {
 
-	public Button actionButton;
-	public Text actionButtonText;
+	// these buttons keep track of what stage of task creation you're in
+	public Button addButton;
+	public Button checkButton;
+	public Button deleteButton;
+
 	public InputField inputField;
 	public Text taskNameLabel;
 	public GameObject optionsPanel;
@@ -16,18 +19,13 @@ public class TaskPanel : MonoBehaviour {
 	public GameObject subtaskListPanel;
 	public GameObject subtaskPanelGrid;
 	public GameObject subtaskItemPanelPrefab;
-	private List<SubtaskPanel> subtaskPanels = new List<SubtaskPanel>();
+	public List<SubtaskPanel> subtaskPanels = new List<SubtaskPanel>();
 	GameObject newSubtaskPanel;
 
 	// used to add and remove task to the list, and to toggle options
 	private TaskList taskList;
 	// used to access edit options
 	public OptionsMenu optionsMenu;
-
-	// these bools keep track of what stage of task creation you're in
-	public bool plus = true;
-	public bool check = false;
-	public bool delete = false;
 
 	// task class that is used in save data
 	public Task task;
@@ -38,33 +36,28 @@ public class TaskPanel : MonoBehaviour {
 			optionsMenu = taskList.optionsMenu;
 		}
 	}
-
-	// user tapped + or check.
-	public void ActionButtonPressed(){
-		if (plus) {
-			inputField.gameObject.SetActive (true);
-			inputField.Select();
-			actionButtonText.text = ((char)0x2713).ToString ();
-			plus = false;
-			check = true;
-			delete = false;
-		}
-		else if(check){
-			// TODO: 
-			// tasks with the same name
-			if(inputField.text.Trim() == "") return;
-			taskNameLabel.text = inputField.text;
-			inputField.gameObject.SetActive (false);
-			taskNameLabel.gameObject.SetActive(true);
-			actionButtonText.text = "x";
-			plus = false;
-			check = false;
-			delete = true;
-			taskList.AddTask(this);
-		}
-		else if (delete) {
-			taskList.RemoveTask(this);
-		}
+	
+	public void AddButton(){
+		inputField.gameObject.SetActive (true);
+		inputField.Select();
+		addButton.gameObject.SetActive(false);
+		checkButton.gameObject.SetActive(true);
+	}
+	
+	public void CheckButton(){
+		// TODO: 
+		// tasks with the same name?
+		if(inputField.text.Trim() == "") return;
+		taskNameLabel.text = inputField.text;
+		inputField.gameObject.SetActive (false);
+		taskNameLabel.gameObject.SetActive(true);
+		taskList.AddTask(this);
+		checkButton.gameObject.SetActive(false);
+		deleteButton.gameObject.SetActive(true);
+	}
+	
+	public void DeleteButton(){
+		taskList.RemoveTask(this);	
 	}
 	
 	// called by event trigger on Main Task Panel
@@ -96,10 +89,14 @@ public class TaskPanel : MonoBehaviour {
 
 	public void CompleteTask(){
 		taskList.RemoveTask(this);
+		Task t = task;
+		GameData.tasks.Remove(t);
+		//TODO: add completed task to queue (make a new list in gamedata)
+		//save and load completed task queue
+		//add checks on the gamecontroller for complete tasks
 	}
 
 	public void CreateSubtask(){
-		// TODO: clicking CreateSubtask while you currently have a blank subtask should do nothing
 		if(newSubtaskPanel != null) return;
 
 		newSubtaskPanel = Instantiate(
@@ -108,13 +105,13 @@ public class TaskPanel : MonoBehaviour {
 			subtaskItemPanelPrefab.transform.rotation
 		) as GameObject;
 		newSubtaskPanel.transform.SetParent(subtaskPanelGrid.transform, false);
-		newSubtaskPanel.transform.SetSiblingIndex(0);
+//		newSubtaskPanel.transform.SetSiblingIndex(0);
 	}
 	
 	public void AddSubtask(SubtaskPanel subtaskPanel){
 		Task newTask = new Task(subtaskPanel.subtaskNameLabel.text, subtaskPanels.Count); 
-		Task parentTask = (Task) GameData.tasks[subtaskPanel.parentTask.task.name];
-		parentTask.subtasks.Add(newTask.name, newTask);
+		Task parentTask = (Task) GameData.tasks[subtaskPanel.parentTask.task.id];
+		parentTask.subtasks.Add(newTask);
 		subtaskPanel.task = newTask;
 		newTask.parentTask = task;
 
@@ -126,8 +123,8 @@ public class TaskPanel : MonoBehaviour {
 	
 	public void RemoveSubtask(SubtaskPanel subtaskPanel){
 		ShiftIDs(subtaskPanel.task.id);
-		Task parentTask = (Task) GameData.tasks[subtaskPanel.parentTask.task.name];
-		parentTask.subtasks.Remove(subtaskPanel.task.name);
+		Task parentTask = (Task) GameData.tasks[subtaskPanel.parentTask.task.id];
+		parentTask.subtasks.Remove(subtaskPanel.task);
 		subtaskPanels.Remove(subtaskPanel);
 		Destroy(subtaskPanel.gameObject);
 

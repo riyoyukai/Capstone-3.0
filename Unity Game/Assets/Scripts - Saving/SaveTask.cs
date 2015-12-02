@@ -11,4 +11,9 @@ public class SaveTask {
 //	public System.DateTime reminderDate;
 	public int difficulty;
 	public List<SaveTask> subtasks = new List<SaveTask>();
+
+	public SaveTask(string name, int id){
+		this.name = name;
+		this.id = id;
+	}
 }

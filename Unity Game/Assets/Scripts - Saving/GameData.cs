@@ -17,8 +17,9 @@ public static class GameData {
 	public static Monster activeMonster = new Monster();
 	public static List<Item> inventory = new List<Item>();
 	public static List<Item> envInventory = new List<Item>();
-
-	public static Hashtable tasks = new Hashtable();
+	
+	public static List<Task> tasks = new List<Task>();
+	public static List<Task> completedTasks = new List<Task>();
 
 	public static void TestInventory(){
 		inventory.Add(new Item("Toy"));
@@ -27,19 +28,29 @@ public static class GameData {
 	}
 
 	public static void Save(){
+		/***** Monster */
 		GameData.saveData.monster = new SaveMonster();
+		/***** Tasks */
 		List<SaveTask> saveTasks = new List<SaveTask>();
 		// TODO: set properties saveData.monster.prop = GameData.activeMonster.prop;
-		foreach(DictionaryEntry entry in tasks){
-			Task t = (Task)entry.Value;
-			Debug.Log("Order saving: " + t.id);
-			SaveTask st = new SaveTask();
+		foreach(Task t in tasks){
+			SaveTask st = new SaveTask(t.name, t.id);
 			st.difficulty = t.difficulty;
-			st.name = t.name;
-			st.id = t.id;
+			foreach(Task subt in t.subtasks){
+				SaveTask sst = new SaveTask(subt.name, subt.id);
+				sst.difficulty = subt.difficulty;
+				st.subtasks.Add(sst);
+			}
 			saveTasks.Add(st);
 		}
 		GameData.saveData.tasks = saveTasks;
+		/***** Completed Tasks */
+		foreach(Task c in completedTasks){
+			SaveTask st = new SaveTask(c.name, c.id);
+			st.difficulty = c.difficulty;
+			// TODO: parent task somehow? to display what the task was a child of?
+		}
+
 		Serializer.Save(saveData);
 	}
 
@@ -50,15 +61,14 @@ public static class GameData {
 		Debug.Log("Found save data...");
 		saveData = tempSave;
 		foreach(SaveTask st in saveData.tasks){
-			Debug.Log("Order loading: " + st.id);
 			Task t = new Task(st.name, st.id);
 			t.difficulty = st.difficulty;
 			foreach(SaveTask sst in st.subtasks){
 				Task subt = new Task(sst.name, sst.id);
 				subt.difficulty = sst.difficulty;
-				t.subtasks.Add(subt.name, st);
+				t.subtasks.Add(subt);
 			}
-			tasks.Add(t.name, t);
+			tasks.Add(t);
 		}
 		return true;
 	}

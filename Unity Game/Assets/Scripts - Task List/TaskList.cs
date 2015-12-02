@@ -6,26 +6,27 @@ public class TaskList : MonoBehaviour {
 	
 	public GameObject taskItemPanelPrefab;
 	public GameObject savedTaskItemPanelPrefab;
+	public GameObject savedSubtaskItemPanelPrefab;
 	public GameObject taskPanelGrid;
 	private List<TaskPanel> taskPanels = new List<TaskPanel>();
 	public OptionsMenu optionsMenu;
 
 	void Start(){
-		if(GameData.Load()){
+		if(GameData.Load() && GameData.tasks.Count > 0){ // remove gamedata.load from here
 			print ("loaded data");
-			foreach(DictionaryEntry entry in GameData.tasks){
-				Task t = (Task)entry.Value;
+			foreach(Task t in GameData.tasks){
 				print ("Looking at task \"" + t.name + "\"");
 				GameObject newTaskObject = Instantiate(
 					savedTaskItemPanelPrefab,
 					savedTaskItemPanelPrefab.transform.position,
 					savedTaskItemPanelPrefab.transform.rotation
-					) as GameObject;
+				) as GameObject;
 				TaskPanel newTask = newTaskObject.GetComponent<TaskPanel>();
 
-				newTask.plus = false;
-				newTask.check = false;
-				newTask.delete = true;
+				newTask.addButton.gameObject.SetActive(false);
+				newTask.checkButton.gameObject.SetActive(false);
+				newTask.deleteButton.gameObject.SetActive(true);
+
 				newTask.task = t;
 				newTask.taskNameLabel.text = t.name;
 				
@@ -33,6 +34,27 @@ public class TaskList : MonoBehaviour {
 				newTaskObject.transform.SetParent(taskPanelGrid.transform, false);
 				newTaskObject.transform.SetSiblingIndex(1);
 				taskPanels.Add (newTask);
+
+				foreach(Task st in t.subtasks){
+					GameObject newSubtaskObject = Instantiate(
+						savedSubtaskItemPanelPrefab,
+						savedSubtaskItemPanelPrefab.transform.position,
+						savedSubtaskItemPanelPrefab.transform.rotation
+					) as GameObject;
+					SubtaskPanel newSubtask = newSubtaskObject.GetComponent<SubtaskPanel>();
+					
+					newSubtask.checkButton.gameObject.SetActive(false);
+					newSubtask.deleteButton.gameObject.SetActive(true);
+					newSubtask.task = st;
+					newSubtask.parentTask = newTask;
+					print ("st.name: " + st.name);
+					newSubtask.subtaskNameLabel.text = st.name;
+
+					newSubtaskObject.transform.SetParent(newTask.subtaskPanelGrid.transform, false);
+					newTask.subtaskListPanel.gameObject.SetActive(false);
+
+					newTask.subtaskPanels.Add (newSubtask);
+				}
 			}
 		}else{
 			print ("didn't load data");
@@ -41,7 +63,7 @@ public class TaskList : MonoBehaviour {
 
 	public void AddTask(TaskPanel taskPanel){
 		Task newTask = new Task(taskPanel.taskNameLabel.text, taskPanels.Count); 
-		GameData.tasks.Add(taskPanel.taskNameLabel.text, newTask);
+		GameData.tasks.Add(newTask);
 		taskPanel.task = newTask;
 
 		GameObject newTaskPanel = Instantiate(
@@ -58,7 +80,7 @@ public class TaskList : MonoBehaviour {
 
 	public void RemoveTask(TaskPanel taskPanel){
 		ShiftIDs(taskPanel.task.id);
-		GameData.tasks.Remove(taskPanel.task.name);
+		GameData.tasks.Remove(taskPanel.task);
 
 		taskPanels.Remove(taskPanel);
 		Destroy(taskPanel.gameObject);

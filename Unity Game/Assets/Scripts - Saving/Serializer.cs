@@ -11,7 +11,7 @@ public class Serializer {
 	
 	public static void Save(SaveData data){	
 		string path = Application.persistentDataPath + "/" + filename;
-		Debug.Log(path);
+//		Debug.Log(path);
 		
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream fs = File.Open (path, FileMode.OpenOrCreate);
