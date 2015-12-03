@@ -23,7 +23,7 @@ public class TaskPanel : MonoBehaviour {
 	GameObject newSubtaskPanel;
 
 	// used to add and remove task to the list, and to toggle options
-	private TaskList taskList;
+	public TaskList taskList;
 	// used to access edit options
 	public OptionsMenu optionsMenu;
 
@@ -105,7 +105,17 @@ public class TaskPanel : MonoBehaviour {
 			subtaskItemPanelPrefab.transform.rotation
 		) as GameObject;
 		newSubtaskPanel.transform.SetParent(subtaskPanelGrid.transform, false);
-//		newSubtaskPanel.transform.SetSiblingIndex(0);
+	}	
+	
+	public void OpenOptionsForSubtask(int id){	
+		for(int i = 0; i < subtaskPanels.Count; i++){
+			SubtaskPanel tp = subtaskPanels[i];
+			if(i == id){
+				tp.OpenOptions();
+			}else{
+				tp.CloseOptions();
+			}
+		}
 	}
 	
 	public void AddSubtask(SubtaskPanel subtaskPanel){
@@ -134,7 +144,7 @@ public class TaskPanel : MonoBehaviour {
 	private void ShiftIDs(int id){
 		for(int i = id; i < subtaskPanels.Count; i++){
 			subtaskPanels[i].task.id--;
-			subtaskPanels[i].subtaskNameLabel.text += " ID: " + subtaskPanels[i].task.id;
+//			subtaskPanels[i].subtaskNameLabel.text += " ID: " + subtaskPanels[i].task.id;
 		}
 	}
 }

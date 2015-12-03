@@ -26,4 +26,8 @@ public class GameStateManager : MonoBehaviour {
 	public void GSM_SwitchToTaskList(){
 		Application.LoadLevel ("TaskList");
 	}
+	
+	public void GSM_Quit(){
+		Application.Quit();
+	}
 }

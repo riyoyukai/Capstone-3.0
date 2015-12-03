@@ -18,6 +18,9 @@ public class SubtaskPanel : MonoBehaviour {
 	// used to add and remove task to the list, and to toggle options
 	public TaskPanel parentTask;
 
+	// used to access edit options
+	public OptionsMenu optionsMenu;
+
 	void Start(){
 		if(inputField != null){
 			parentTask = transform.parent.parent.parent.GetComponent<TaskPanel>();
@@ -28,6 +31,10 @@ public class SubtaskPanel : MonoBehaviour {
 		}else{
 			checkButton.gameObject.SetActive(false);
 			deleteButton.gameObject.SetActive(true);
+		}
+
+		if(optionsMenu == null){
+			optionsMenu = parentTask.taskList.optionsMenu;
 		}
 	}
 	
@@ -53,10 +60,16 @@ public class SubtaskPanel : MonoBehaviour {
 			if(optionsPanel.activeSelf){
 				CloseOptions();
 			}else{
-//				taskList.OpenOptionsForTask(task.id);
+				parentTask.OpenOptionsForSubtask(task.id);
 				OpenOptions();
 			}
 		}
+	}
+	
+	public void EditTask(){
+		print ("Task: " + this.task);
+		print ("Options: " + optionsMenu);
+		optionsMenu.Open(this.task);
 	}
 	
 	public void OpenOptions(){
