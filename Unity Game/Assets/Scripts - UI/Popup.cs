@@ -30,7 +30,7 @@ public class Popup : MonoBehaviour {
 	}
 
 	public void E_Hatch(EggBehavior egg){
-		egg.Hatch();
+		egg.Hatch(hatchName.text);
 		print ("\""+hatchName.text+"\"");
 		ClosePopup();
 	}

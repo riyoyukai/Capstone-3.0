@@ -14,7 +14,7 @@ public static class GameData {
 	/**** End Save Data ****/
 
 
-	public static Monster activeMonster = new Monster();
+	public static Monster activeMonster;
 	public static List<Item> inventory = new List<Item>();
 	public static List<Item> envInventory = new List<Item>();
 	
@@ -29,7 +29,9 @@ public static class GameData {
 
 	public static void Save(){
 		/***** Monster */
-		GameData.saveData.monster = new SaveMonster();
+		SaveMonster savemon = new SaveMonster();
+		savemon.name = activeMonster.name;
+
 		/***** Tasks */
 		List<SaveTask> saveTasks = new List<SaveTask>();
 		// TODO: set properties saveData.monster.prop = GameData.activeMonster.prop;
@@ -43,7 +45,8 @@ public static class GameData {
 			}
 			saveTasks.Add(st);
 		}
-		GameData.saveData.tasks = saveTasks;
+		saveData.tasks = saveTasks;
+
 		/***** Completed Tasks */
 		foreach(Task c in completedTasks){
 			SaveTask st = new SaveTask(c.name, c.id);
@@ -54,12 +57,23 @@ public static class GameData {
 		Serializer.Save(saveData);
 	}
 
-	public static bool Load(){
+	public static void Load(){
 		SaveData tempSave = Serializer.Load();
 		// populate everything...
-		if(tempSave == null) return false;
+		if(tempSave == null) return;
+
 		Debug.Log("Found save data...");
 		saveData = tempSave;
+
+		/***** Monster */
+		activeMonster = new Monster();
+		activeMonster.name = saveData.monster.name;
+		// TODO: 
+		// hatched bool
+		// hatchtime float (int?)
+		// birthday // can dates be serialized?
+
+		/***** Tasks */
 		foreach(SaveTask st in saveData.tasks){
 			Task t = new Task(st.name, st.id);
 			t.difficulty = st.difficulty;
@@ -70,7 +84,13 @@ public static class GameData {
 			}
 			tasks.Add(t);
 		}
-		return true;
+
+		/***** Completed Tasks */
+		foreach(SaveTask ct in saveData.completedTasks){
+			Task t = new Task(ct.name, ct.id);
+			// TODO: parent task somehow? to display what the task was a child of?
+			completedTasks.Add(t);
+		}
 	}
 
 	public static void LoadPreferences () {

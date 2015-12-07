@@ -12,7 +12,7 @@ public class TaskList : MonoBehaviour {
 	public OptionsMenu optionsMenu;
 
 	void Start(){
-		if(GameData.Load() && GameData.tasks.Count > 0){ // remove gamedata.load from here
+		if(GameData.tasks.Count > 0){
 			print ("loaded data");
 			foreach(Task t in GameData.tasks){
 				print ("Looking at task \"" + t.name + "\"");

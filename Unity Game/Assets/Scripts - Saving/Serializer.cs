@@ -5,12 +5,11 @@ using System; // Needed for [Serializable]
 using System.Runtime.Serialization.Formatters.Binary; // Needed for BinaryFormatter
 using System.IO; // Needed for FileStream and File
 
-public class Serializer {
+public static class Serializer {
 
-	public static string filename = "taskmonster.rfg";
+	public static string path = Application.persistentDataPath + "/taskmonster.rfg";
 	
 	public static void Save(SaveData data){	
-		string path = Application.persistentDataPath + "/" + filename;
 //		Debug.Log(path);
 		
 		BinaryFormatter bf = new BinaryFormatter ();
@@ -20,7 +19,7 @@ public class Serializer {
 	}
 	
 	public static SaveData Load(){
-		string path = Application.persistentDataPath + "/" + filename;
+//		string path = Application.persistentDataPath + "/" + filename;
 		if (File.Exists (path)) {
 			try{
 				BinaryFormatter bf = new BinaryFormatter ();
@@ -33,5 +32,9 @@ public class Serializer {
 			}
 		}
 		return null;
+	}
+
+	public static void DeleteSave(){
+		File.Delete(path);
 	}
 }

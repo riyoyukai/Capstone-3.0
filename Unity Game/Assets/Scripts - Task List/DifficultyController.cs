@@ -10,7 +10,7 @@ public class DifficultyController : MonoBehaviour {
 	public TaskList taskList;
 	public OptionsMenu optionsMenu;
 
-	public void SetDifficult(int dif){
+	public void SetDifficulty(int dif){
 		for(int i = 0; i < stars.Length; i++){
 			if(i <= dif){
 				stars[i].image.sprite = starFilled;

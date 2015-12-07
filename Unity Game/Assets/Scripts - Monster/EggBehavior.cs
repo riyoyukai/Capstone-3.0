@@ -3,18 +3,15 @@ using System.Collections;
 
 public class EggBehavior : MonoBehaviour {
 
-	float hatchTime;
-	public GameObject monsterPrefab;
+	public float hatchTime;
 	public GameObject hatchPopup;
-	public GameObject monsterBehavior;
+	public MonsterBehavior monsterBehavior;
 
-	// Use this for initialization
 	void Start () {
 		hatchTime = Ease.RandomFloat(3, 5);
 		print (hatchTime);
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		hatchTime -= Time.deltaTime;
 		if(hatchTime <= 0){
@@ -24,11 +21,14 @@ public class EggBehavior : MonoBehaviour {
 		}
 	}
 
-	public void Hatch(){
+	// called when monster popup is closed
+	public void Hatch(string name){
 		Monster monster = new Monster();
-		//Instantiate(monsterPrefab, this.transform.position, this.transform.rotation);
-		//monsterBehavior.transform.position = this.transform.position;
-		monsterBehavior.SetActive(true);
+		monster.name = name;
+		GameData.activeMonster = monster;
+		monsterBehavior.gameObject.SetActive(true);
+		monsterBehavior.SetUp(monster);
+
 		Destroy(this.gameObject);
 	}
 }

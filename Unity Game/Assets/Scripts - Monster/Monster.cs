@@ -5,10 +5,11 @@ using System.Collections.Generic;
 public class Monster {
 	private float hunger = 33; // percent
 	private bool hungry = false;
-	private int xp;
-	private int level;
-	private int xpToNextLevel;
+	private int xp = 0;
+	private int level = 1;
+	private int xpToNextLevel = 100;
 	private int totalXP;
+	public string name;
 	public MonsterBehavior monsterController;
 
 	//private int sleepThisLong = 8; // hours
@@ -18,12 +19,6 @@ public class Monster {
 
 	public Monster(){
 
-	}
-
-	void Awake(){
-		xp = 0;
-		level = 1;
-		xpToNextLevel = 100;
 	}
 
 	public void Update(){

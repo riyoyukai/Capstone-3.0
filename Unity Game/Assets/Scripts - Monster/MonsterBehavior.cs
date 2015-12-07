@@ -40,7 +40,8 @@ public class MonsterBehavior : MonoBehaviour {
 
 	// variables for animating walk
 	int animateStep = 0;
-	float animateTimeScale = .25f;
+	float animateTimeScale = .4f;
+	float speed = 1.3f;
 	float animateTimer = 0;
 	List<Vector3> animatePath = new List<Vector3>();
 	Pathfinder pathfinder;
@@ -55,13 +56,16 @@ public class MonsterBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameData.activeMonster = new Monster(); // TODO: remove from testing
 		monster = GameData.activeMonster;
 		monster.monsterController = this;
 		pathfinder = GetComponent<Pathfinder>();
 		animator = GetComponentInChildren<Animator>();
 //		BeginAnimWalk(null);
 		BeginAnimIdle();
+	}
+
+	public void SetUp(Monster m){
+		monster = m;
 	}
 
 	void OnMouseOver(){
@@ -259,7 +263,7 @@ public class MonsterBehavior : MonoBehaviour {
 					Vector3 pt2 = animatePath[animateStep + 1];
 
 					float distance = Vector3.Distance(pt1, pt2);
-					animateTimeScale = (1/distance);
+					animateTimeScale = (1/distance * speed);
 					if(distance < 1) animateTimeScale = distance/2; // to prevent nyooming
 					if(state != AnimState.FindFood && transform.position.x == animatePath[animateStep + 1].x){
 						ChangeState(AnimState.Climb);
