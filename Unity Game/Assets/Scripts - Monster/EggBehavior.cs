@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class EggBehavior : MonoBehaviour {
@@ -23,11 +24,13 @@ public class EggBehavior : MonoBehaviour {
 
 	// called when monster popup is closed
 	public void Hatch(string name){
-		Monster monster = new Monster();
-		monster.name = name;
-		GameData.activeMonster = monster;
+		GameData.activeMonster.name = name;
+		GameData.activeMonster.hatched = true;
+		GameData.activeMonster.birthday = DateTime.Now;
+		print ("bday: " + GameData.activeMonster.birthday);
 		monsterBehavior.gameObject.SetActive(true);
-		monsterBehavior.SetUp(monster);
+		monsterBehavior.SetUp(GameData.activeMonster);
+		GameData.Save ();
 
 		Destroy(this.gameObject);
 	}

@@ -8,7 +8,7 @@ public class SaveMonster {
 	public string name;
 	public bool hatched;
 	public int hatchTimeLeft;
-	public DateTime birthdate;
+	public DateTime birthday;
 
 	public SaveMonster(){}
 

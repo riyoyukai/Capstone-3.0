@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 public class Monster {
 	private float hunger = 33; // percent
 	private bool hungry = false;
-	private int xp = 0;
-	private int level = 1;
-	private int xpToNextLevel = 100;
+	public int xp = 0;
+	public int level = 1;
+	public int xpToNextLevel = 100;
 	private int totalXP;
 	public string name;
 	public MonsterBehavior monsterController;
+	public bool hatched = false;
+	public DateTime birthday;
+	public string species = "Sprinkle";
 
 	//private int sleepThisLong = 8; // hours
 	//private float sleepiness = 100; // percent
