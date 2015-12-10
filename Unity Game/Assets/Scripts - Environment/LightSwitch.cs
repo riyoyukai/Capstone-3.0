@@ -19,11 +19,11 @@ public class LightSwitch : MonoBehaviour {
 	void OnMouseUp(){
 		if(on){ // turn light off
 			monsterModel.material = nightMat;
-			eggModel.material = eggNightMat;
+			if(eggModel != null) eggModel.material = eggNightMat;
 			envLight.intensity = .3f;
 		}else{
 			monsterModel.material = dayMat;
-			eggModel.material = eggDayMat;
+			if(eggModel != null) eggModel.material = eggDayMat;
 			envLight.intensity = 1;
 		} // turn light on
 
