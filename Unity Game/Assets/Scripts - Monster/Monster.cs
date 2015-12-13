@@ -30,7 +30,7 @@ public class Monster {
 		//UIController.instance.UpdatePetStats(hunger);
 		if(!hungry && hunger/100 < .3){
 			hungry = true;
-			UIController.instance.Alert("I'm hungry!");
+//			UIController.instance.Alert("I'm hungry!");
 			if(monsterController != null) monsterController.BeginAnimFindFood();
 		}
 	}
@@ -38,7 +38,7 @@ public class Monster {
 	public void EatFood(){
 		hunger = 100;
 		hungry = false;
-		UIController.instance.Alert("Yumm!!");
+//		UIController.instance.Alert("Yumm!!");
 	}
 
 	public void AddXP(int xpToAdd){

@@ -88,12 +88,11 @@ public class TaskPanel : MonoBehaviour {
 	}
 
 	public void CompleteTask(){
-		taskList.RemoveTask(this);
 		Task t = task;
+		GameData.completedTasks.Add(t);
 		GameData.tasks.Remove(t);
-		//TODO: add completed task to queue (make a new list in gamedata)
-		//save and load completed task queue
-		//add checks on the gamecontroller for complete tasks
+
+		taskList.RemoveTask(this);
 	}
 
 	public void CreateSubtask(){

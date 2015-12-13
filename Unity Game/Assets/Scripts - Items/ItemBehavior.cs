@@ -6,17 +6,18 @@ public class ItemBehavior : MonoBehaviour {
 
 	public Item item;
 	private bool followMouse = false;
-	private GameObject inventoryButton;
+//	private GameObject inventoryButton;
 	private Collider trash;
 	private SpriteRenderer spriteRenderer;
-	private InventoryController inventoryController;
+//	private InventoryController inventoryController;
 
 	/// <summary>
 	/// Initializes various variables for later access
 	/// </summary>
 	void Start(){
 		item = new Item("Food"); // TODO: remove from testing
-		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
+		//TODO: give it a random rotting time
+//		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
 		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<Collider>();
 		// TODO: uncomment this and make it work
 //		inventoryController = GameObject.FindGameObjectWithTag("InventoryController").GetComponent<InventoryController>();
@@ -30,10 +31,10 @@ public class ItemBehavior : MonoBehaviour {
 	/// <param name="pItem">pItem.</param>
 	public void SetUp(Item pItem){
 		item = pItem;
-		spriteRenderer.sprite = Resources.Load<Sprite>("Textures/" + pItem.textureName);
-		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
+//		spriteRenderer.sprite = Resources.Load<Sprite>("Textures/" + pItem.textureName);
+//		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
 		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<Collider>();
-		inventoryController = GameObject.Find("InventoryController").GetComponent<InventoryController>();
+//		inventoryController = GameObject.Find("InventoryController").GetComponent<InventoryController>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
@@ -49,7 +50,7 @@ public class ItemBehavior : MonoBehaviour {
 	void OnMouseUp(){
 		followMouse = false;
 		
-		Vector3 p = this.transform.position;
+//		Vector3 p = this.transform.position;
 		
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
@@ -58,14 +59,14 @@ public class ItemBehavior : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 
-		p = Camera.main.WorldToScreenPoint(p);
-		p.y += 30;
+//		p = Camera.main.WorldToScreenPoint(p);
+//		p.y += 30;
 		
-		if(Ease.IsPointWithinRect(p, inventoryButton)){
-			print ("Put item away");
-			inventoryController.TakeItem(item);
-			Destroy (this.gameObject);
-		}
+//		if(Ease.IsPointWithinRect(p, inventoryButton)){
+//			print ("Put item away");
+//			inventoryController.TakeItem(item);
+//			Destroy (this.gameObject);
+//		}
 	}
 
 	void Update(){
@@ -76,5 +77,8 @@ public class ItemBehavior : MonoBehaviour {
 			this.transform.position = newPos;
 			GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 		}
+		Vector3 pos = this.transform.position;
+		if(pos.y < -1.19f) pos.y = -1.19f;
+		this.transform.position = pos;
 	}
 }

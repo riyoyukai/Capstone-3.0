@@ -15,17 +15,18 @@ public static class GameData {
 
 
 	public static Monster activeMonster = new Monster();
-	public static List<Item> inventory = new List<Item>();
-	public static List<Item> envInventory = new List<Item>();
-	
+//	public static List<Item> inventory = new List<Item>();
+//	public static List<Item> envInventory = new List<Item>();
+
+	public static List<Item> items = new List<Item>();
 	public static List<Task> tasks = new List<Task>();
 	public static List<Task> completedTasks = new List<Task>();
 
-	public static void TestInventory(){
-		inventory.Add(new Item("Toy"));
-		inventory.Add(new Item("Toy"));
-		inventory.Add(new Item("Toy"));
-	}
+//	public static void TestInventory(){
+//		inventory.Add(new Item("Toy"));
+//		inventory.Add(new Item("Toy"));
+//		inventory.Add(new Item("Toy"));
+//	}
 
 	public static void Save(){
 		/***** Monster */
@@ -36,6 +37,18 @@ public static class GameData {
 		savemon.birthday = activeMonster.birthday;
 
 		saveData.monster = savemon;
+
+		/***** Items */
+		List<SaveItem> saveItems = new List<SaveItem>();
+		foreach(Item item in items){
+			SaveItem si = new SaveItem();
+			si.x = item.position.x;
+			si.y = item.position.y;
+			si.z = item.position.z;
+			si.type = (int)item.type;
+			saveItems.Add (si);
+		}
+		saveData.items = saveItems;
 
 		/***** Tasks */
 		List<SaveTask> saveTasks = new List<SaveTask>();
@@ -79,6 +92,16 @@ public static class GameData {
 		activeMonster.birthday = saveData.monster.birthday;
 		// TODO: 
 		// hatchtime float (int?)
+
+		/***** Items */
+		foreach(SaveItem si in saveData.items){
+			Item item = new Item("Food");
+			item.position.x = si.x;
+			item.position.y = si.y;
+			item.position.z = si.z;
+			item.type = (ItemType)si.type;
+			items.Add(item);
+		}
 
 		/***** Tasks */
 		foreach(SaveTask st in saveData.tasks){

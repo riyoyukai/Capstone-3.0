@@ -9,6 +9,7 @@ using System.IO;
 public class SaveData {
 	public List<SaveTask> tasks = new List<SaveTask>();
 	public List<SaveTask> completedTasks = new List<SaveTask>();
+	public List<SaveItem> items = new List<SaveItem>();
 	public SaveMonster monster = new SaveMonster();
 
 	public SaveData(){}

@@ -5,6 +5,10 @@ using System.Collections;
 public class Popup : MonoBehaviour {
 
 	public Text hatchName;
+	private int taskID;
+	public Text taskName;
+	public GameObject itemHolder;
+	public GameObject itemPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -16,11 +20,6 @@ public class Popup : MonoBehaviour {
 	
 	}
 
-	public void E_ClosePopup(Button closeButton){
-		closeButton.interactable = false;
-		ClosePopup ();
-	}
-
 	public void ClosePopup(){
 		this.gameObject.SetActive (false);
 	}
@@ -30,8 +29,32 @@ public class Popup : MonoBehaviour {
 	}
 
 	public void E_Hatch(EggBehavior egg){
+		if(hatchName.text.Trim() == "") return;
 		egg.Hatch(hatchName.text);
-		print ("\""+hatchName.text+"\"");
 		ClosePopup();
+	}
+
+	public void QueueTask(int tID){
+		taskID = tID;
+		taskName.text = GameData.completedTasks[tID].name;
+	}
+
+	public void E_CompleteTask(){
+		// TODO: give random position
+		// TODO: check if monster is hungry and initiate findfood if so
+		GameObject newItem = Instantiate(
+			itemPrefab,
+			itemPrefab.transform.position,
+			itemPrefab.transform.rotation
+			) as GameObject;
+		newItem.transform.SetParent(itemHolder.transform, false);
+		ItemBehavior ib = newItem.GetComponent<ItemBehavior>();
+		ib.item = new Item("Food");
+		ib.item.itemBehavior = ib;
+		GameData.items.Add(ib.item);
+
+		GameData.completedTasks.RemoveAt(taskID);
+		ClosePopup();
+		GameData.Save();
 	}
 }

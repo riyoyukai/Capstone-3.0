@@ -116,7 +116,7 @@ public class MonsterBehavior : MonoBehaviour {
 	private void BeginAnimCuddle(){
 		lastState = state;
 		ChangeState(AnimState.Cuddle);
-		transform.rotation = Quaternion.Euler(facingForward); //TODO: remove this
+//		transform.rotation = Quaternion.Euler(facingForward); //TODO: remove this
 		print ("Cuddling...");
 	}
 
@@ -140,6 +140,8 @@ public class MonsterBehavior : MonoBehaviour {
 			// TODO: polite/rude reaction here
 			lastState = AnimState.Walk;
 			BeginAnimIdle();
+
+			GameData.Save();
 		}
 	}
 
@@ -206,12 +208,14 @@ public class MonsterBehavior : MonoBehaviour {
 		List<ItemBehavior> food = new List<ItemBehavior>();
 		for(int i = 0; i < itemGOs.Length; i++){
 			ItemBehavior item = itemGOs[i].GetComponent<ItemBehavior>();
-			if(item.item.type == ItemType.Food){
+			if(item.item.type == ItemType.Food && item.item.edible){
 				food.Add(item);
 			}
 		}
 		if(food.Count > 0){
 			BeginAnimWalk(food[Ease.RandomInt(0, food.Count - 1)]);
+		}else{
+
 		}
 	}
 
