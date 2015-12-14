@@ -20,18 +20,18 @@ public class GameStateManager : MonoBehaviour {
 	}
 	
 	public void GSM_LoadAndSwitchToPlay(){
-		Application.LoadLevel ("Play");
 		GameData.Load();
+		Application.LoadLevel ("Play");
 	}
 	
 	public void GSM_SwitchToPetProfile(){
-		Application.LoadLevel ("PetProfile");
 		GameData.Save();
+		Application.LoadLevel ("PetProfile");
 	}
 	
 	public void GSM_SwitchToTaskList(){
-		Application.LoadLevel ("TaskList");
 		GameData.Save();
+		Application.LoadLevel ("TaskList");
 	}
 	
 	public void GSM_Quit(){

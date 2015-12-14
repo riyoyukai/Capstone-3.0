@@ -15,7 +15,6 @@ public class ItemBehavior : MonoBehaviour {
 	/// Initializes various variables for later access
 	/// </summary>
 	void Start(){
-		item = new Item("Food"); // TODO: remove from testing
 		//TODO: give it a random rotting time
 //		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
 		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<Collider>();
@@ -56,7 +55,9 @@ public class ItemBehavior : MonoBehaviour {
 		RaycastHit hit;
 		if (trash.Raycast(ray, out hit, 100.0F)){
 			print ("Trash item");
+			GameData.items.Remove(item);
 			Destroy (this.gameObject);
+			GameData.Save();
 		}
 
 //		p = Camera.main.WorldToScreenPoint(p);

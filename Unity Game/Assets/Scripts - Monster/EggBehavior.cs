@@ -27,7 +27,6 @@ public class EggBehavior : MonoBehaviour {
 		GameData.activeMonster.name = name;
 		GameData.activeMonster.hatched = true;
 		GameData.activeMonster.birthday = DateTime.Now;
-		print ("bday: " + GameData.activeMonster.birthday);
 		monsterBehavior.gameObject.SetActive(true);
 		monsterBehavior.SetUp(GameData.activeMonster);
 		GameData.Save ();

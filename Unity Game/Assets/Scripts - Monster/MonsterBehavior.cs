@@ -116,8 +116,6 @@ public class MonsterBehavior : MonoBehaviour {
 	private void BeginAnimCuddle(){
 		lastState = state;
 		ChangeState(AnimState.Cuddle);
-//		transform.rotation = Quaternion.Euler(facingForward); //TODO: remove this
-		print ("Cuddling...");
 	}
 
 	private void AnimCuddle(){
@@ -136,6 +134,7 @@ public class MonsterBehavior : MonoBehaviour {
 			eatTimer = 0;
 			print ("Done eating, time to react!");
 			monster.EatFood();
+			GameData.items.Remove(targetItem.item);
 			Destroy(targetItem.gameObject);
 			// TODO: polite/rude reaction here
 			lastState = AnimState.Walk;
@@ -167,7 +166,6 @@ public class MonsterBehavior : MonoBehaviour {
 	}
 	
 	private void BeginAnimTurn(Vector3 whichWay){
-		print ("Turning...");
 		lastState = state;
 		ChangeState(AnimState.Turn);
 		turnLocation = transform.rotation;
@@ -189,8 +187,6 @@ public class MonsterBehavior : MonoBehaviour {
 	}
 
 	private void BeginAnimIdle(){
-		// pick random time to wait
-		print ("Idling...");
 		ChangeState(AnimState.Idle);
 		idleTimer = Ease.RandomFloat(idleTimerMin, idleTimerMax);
 	}
@@ -230,7 +226,6 @@ public class MonsterBehavior : MonoBehaviour {
 			ChangeState(AnimState.FindFood);
 			destination = target.transform.position;
 		}else{
-			print ("Walking...");
 			ChangeState(AnimState.Walk);
 			destination = pathfinder.RandomPoint();
 		}

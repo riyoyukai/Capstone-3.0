@@ -42,9 +42,13 @@ public static class GameData {
 		List<SaveItem> saveItems = new List<SaveItem>();
 		foreach(Item item in items){
 			SaveItem si = new SaveItem();
-			si.x = item.position.x;
-			si.y = item.position.y;
-			si.z = item.position.z;
+			Vector3 pos = item.itemBehavior.transform.position;
+			si.x = pos.x;
+			si.y = pos.y;// + .1f;
+			si.z = pos.z;
+			item.position.x = pos.x;
+			item.position.y = pos.y;
+			item.position.z = pos.z;
 			si.type = (int)item.type;
 			saveItems.Add (si);
 		}

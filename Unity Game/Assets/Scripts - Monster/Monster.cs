@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Monster {
-	private float hunger = 33; // percent
+	private float hunger = 100; // percent
 	private bool hungry = false;
 	public int xp = 0;
 	public int level = 1;
