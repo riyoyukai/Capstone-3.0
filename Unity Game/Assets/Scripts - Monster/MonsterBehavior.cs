@@ -18,8 +18,11 @@ public class MonsterBehavior : MonoBehaviour {
 		Turn,		// 3
 		FindFood,	// 4
 		Eat,		// 5
-		Cuddle		// 6
+		Cuddle,		// 6
+		Sleep		// 7
 	}
+
+	public Popup doTaskPopup;
 
 	private float eatTimer = 0;
 	private ItemBehavior targetItem;
@@ -51,21 +54,29 @@ public class MonsterBehavior : MonoBehaviour {
 	float idleTimerMin = 2;
 	float idleTimerMax = 10;
 
+	// variable for delay on hungry popup
+	float hungryPopupDelay = 0;
+	bool alreadySleeping = false;
+
 	// link to monster class
 	private Monster monster;
+
+	void Awake(){		
+		pathfinder = GetComponent<Pathfinder>();
+		animator = GetComponentInChildren<Animator>();
+	}
 
 	// Use this for initialization
 	void Start () {
 		monster = GameData.activeMonster;
 		monster.monsterController = this;
-		pathfinder = GetComponent<Pathfinder>();
-		animator = GetComponentInChildren<Animator>();
-//		BeginAnimWalk(null);
-		BeginAnimIdle();
+		if(state != AnimState.Sleep) BeginAnimIdle();
+		else alreadySleeping = true;
 	}
 
 	public void SetUp(Monster m){
 		monster = m;
+		transform.position = m.position;
 	}
 
 	void OnMouseOver(){
@@ -74,6 +85,10 @@ public class MonsterBehavior : MonoBehaviour {
 				BeginAnimCuddle();
 			}
 		}
+	}
+
+	public bool IsClimbing(){
+		return state == AnimState.Climb;
 	}
 
 	// sets current state and updates animController
@@ -88,6 +103,7 @@ public class MonsterBehavior : MonoBehaviour {
 			ChangeState(lastState);
 		}
 		UpdateMovement();
+		if(!IsClimbing()) monster.position = transform.position;
 		monster.Update();
 	}
 
@@ -109,6 +125,9 @@ public class MonsterBehavior : MonoBehaviour {
 				break;
 			case AnimState.Cuddle:
 				AnimCuddle();
+				break;
+			case AnimState.Sleep:
+				AnimSleep();
 				break;
 		}
 	}
@@ -187,6 +206,7 @@ public class MonsterBehavior : MonoBehaviour {
 	}
 
 	private void BeginAnimIdle(){
+		print ("Idling...");
 		ChangeState(AnimState.Idle);
 		idleTimer = Ease.RandomFloat(idleTimerMin, idleTimerMax);
 	}
@@ -199,7 +219,7 @@ public class MonsterBehavior : MonoBehaviour {
 		}
 	}
 
-	public void BeginAnimFindFood(){
+	public ItemBehavior FoodExists(){
 		GameObject[] itemGOs = GameObject.FindGameObjectsWithTag("Item");
 		List<ItemBehavior> food = new List<ItemBehavior>();
 		for(int i = 0; i < itemGOs.Length; i++){
@@ -209,9 +229,42 @@ public class MonsterBehavior : MonoBehaviour {
 			}
 		}
 		if(food.Count > 0){
-			BeginAnimWalk(food[Ease.RandomInt(0, food.Count - 1)]);
-		}else{
+			return food[Ease.RandomInt(0, food.Count - 1)];
+		}
+		return null;
+	}
 
+	public void BeginAnimFindFood(bool showPopup){
+		ItemBehavior food = FoodExists();
+		if(food != null){
+			food.beingEaten = true;
+			BeginAnimWalk(food);
+		}else{
+			BeginAnimSleep(showPopup);
+		}
+	}
+
+	private void BeginAnimSleep(bool showPopup){
+		ChangeState (AnimState.Sleep);
+		if(showPopup) hungryPopupDelay = 3f;
+		print("Sleeping...");
+	}
+
+	private void AnimSleep(){
+		if(hungryPopupDelay > 0){
+			hungryPopupDelay -= Time.deltaTime;
+			if(hungryPopupDelay < 0){
+				doTaskPopup.gameObject.SetActive(true);
+				doTaskPopup.DoTask();
+				hungryPopupDelay = 0;
+			}
+		}
+		if(GameData.items.Count > 0){
+			ItemBehavior food = FoodExists();
+			if(food != null){
+				food.beingEaten = true;
+				BeginAnimWalk(food);
+			}
 		}
 	}
 
@@ -225,6 +278,7 @@ public class MonsterBehavior : MonoBehaviour {
 			targetItem = target;
 			ChangeState(AnimState.FindFood);
 			destination = target.transform.position;
+			destination.z = this.transform.position.z;
 		}else{
 			ChangeState(AnimState.Walk);
 			destination = pathfinder.RandomPoint();
@@ -275,7 +329,6 @@ public class MonsterBehavior : MonoBehaviour {
 					
 					transform.position = animatePath[animatePath.Count - 1];
 					if(state == AnimState.FindFood){
-						print ("Food reached. TODO: Check if it's still there");
 						BeginAnimEat();
 					}else{
 						BeginAnimIdle();

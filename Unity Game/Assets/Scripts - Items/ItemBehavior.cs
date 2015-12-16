@@ -8,7 +8,8 @@ public class ItemBehavior : MonoBehaviour {
 	private bool followMouse = false;
 //	private GameObject inventoryButton;
 	private Collider trash;
-	private SpriteRenderer spriteRenderer;
+	public bool beingEaten = false;
+	public GameObject[] sprites;
 //	private InventoryController inventoryController;
 
 	/// <summary>
@@ -19,8 +20,8 @@ public class ItemBehavior : MonoBehaviour {
 //		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
 		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<Collider>();
 		// TODO: uncomment this and make it work
-//		inventoryController = GameObject.FindGameObjectWithTag("InventoryController").GetComponent<InventoryController>();
-		spriteRenderer = GetComponent<SpriteRenderer>();
+		//		inventoryController = GameObject.FindGameObjectWithTag("InventoryController").GetComponent<InventoryController>();
+		sprites[item.foodType].SetActive(true);
 	}
 
 	/// <summary>
@@ -28,14 +29,14 @@ public class ItemBehavior : MonoBehaviour {
 	/// that it is linked to an Item object and associated with GameData.inventory
 	/// </summary>
 	/// <param name="pItem">pItem.</param>
-	public void SetUp(Item pItem){
-		item = pItem;
-//		spriteRenderer.sprite = Resources.Load<Sprite>("Textures/" + pItem.textureName);
-//		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
-		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<Collider>();
-//		inventoryController = GameObject.Find("InventoryController").GetComponent<InventoryController>();
-		spriteRenderer = GetComponent<SpriteRenderer>();
-	}
+//	public void SetUp(Item pItem){
+//		item = pItem;
+////		spriteRenderer.sprite = Resources.Load<Sprite>("Textures/" + pItem.textureName);
+////		inventoryButton = GameObject.FindGameObjectWithTag("InventoryButton");
+//		trash = GameObject.FindGameObjectWithTag("Trash").GetComponent<Collider>();
+////		inventoryController = GameObject.Find("InventoryController").GetComponent<InventoryController>();
+//		spriteRenderer = GetComponent<SpriteRenderer>();
+//	}
 
 	void OnMouseDown(){
 		followMouse = true;
@@ -71,15 +72,18 @@ public class ItemBehavior : MonoBehaviour {
 	}
 
 	void Update(){
-		if(followMouse){
+		if(followMouse && !beingEaten){
 			Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			newPos.z = this.transform.position.z;
-			newPos.y -= 6.5f;
+			newPos.y -= 6f;
 			this.transform.position = newPos;
 			GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 		}
 		Vector3 pos = this.transform.position;
-		if(pos.y < -1.19f) pos.y = -1.19f;
+		if(pos.y < -.75f) pos.y = -.75f;
+		if(pos.x < -5.2f) pos.x = -5.2f;
+		if(pos.x > 5.2f) pos.x = 5.2f;
 		this.transform.position = pos;
+		item.position = pos;
 	}
 }

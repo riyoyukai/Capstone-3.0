@@ -15,6 +15,7 @@ public class Item {
 	public bool edible = true;
 	public Vector3 position;
 	public ItemBehavior itemBehavior;
+	public int foodType;
 
 	public Item(string itemName){
 //		name = itemName;

@@ -9,7 +9,11 @@ public class SaveMonster {
 	public bool hatched;
 	public int hatchTimeLeft;
 	public DateTime birthday;
-	public int hunger;
+	public float hunger;
+	
+	public float x;
+	public float y;
+	public float z;
 
 	public SaveMonster(){}
 

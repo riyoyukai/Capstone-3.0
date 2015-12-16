@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
 
-	private float delay = 3;
+	private float delay = 1;
 	public Popup taskCompletePopup;
 	private bool popupOpenLast;
 
@@ -13,15 +13,16 @@ public class UIController : MonoBehaviour {
 	}
 
 	void Update(){
-		delay -= Time.deltaTime;
-		if(delay <= 0 && GameData.completedTasks.Count > 0){
+		if(delay > 0) delay -= Time.deltaTime;
+		if(delay < 0 && GameData.completedTasks.Count > 0){
 			taskCompletePopup.gameObject.SetActive(true);
 			taskCompletePopup.QueueTask(0);
+			delay = 0;
 		}
 
 		bool popupOpen = taskCompletePopup.gameObject.activeSelf;
 		if(popupOpenLast && !popupOpen){
-			delay = 3;
+			delay = 1;
 		}
 
 		popupOpenLast = popupOpen;

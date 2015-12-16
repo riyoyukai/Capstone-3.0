@@ -9,7 +9,7 @@ public class EggBehavior : MonoBehaviour {
 	public MonsterBehavior monsterBehavior;
 
 	void Start () {
-		hatchTime = Ease.RandomFloat(3, 5);
+		hatchTime = GameData.activeMonster.hatchTime;
 		print (hatchTime);
 	}
 
@@ -19,7 +19,8 @@ public class EggBehavior : MonoBehaviour {
 			// play hatching animation
 				// if hatching anim over, open pop up and instantiate monster
 			hatchPopup.SetActive(true);
-		}
+		}		
+		GameData.activeMonster.hatchTime = hatchTime;
 	}
 
 	// called when monster popup is closed
@@ -28,6 +29,7 @@ public class EggBehavior : MonoBehaviour {
 		GameData.activeMonster.hatched = true;
 		GameData.activeMonster.birthday = DateTime.Now;
 		monsterBehavior.gameObject.SetActive(true);
+		GameData.activeMonster.position = monsterBehavior.transform.position;
 		monsterBehavior.SetUp(GameData.activeMonster);
 		GameData.Save ();
 

@@ -9,6 +9,7 @@ public class SaveItem {
 	public float x;
 	public float y;
 	public float z;
+	public int foodType;
 
 	public SaveItem(){
 

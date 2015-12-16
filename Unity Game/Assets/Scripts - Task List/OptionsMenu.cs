@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -27,11 +28,18 @@ public class OptionsMenu : MonoBehaviour {
 	public int remindWeeks;
 	public int remindMonths;
 
-	public Task task;
+	public InputField newTaskName;
 
-	public void Open(Task pTask){
+	public Task task;
+	public TaskPanel taskPanel;
+	public SubtaskPanel subTaskPanel;
+
+	public void Open(TaskPanel pTask, SubtaskPanel pSubTask){
 		this.gameObject.SetActive(true);
-		task = pTask;
+		task = pTask.task;
+		subTaskPanel = pSubTask;
+		taskPanel = pTask;
+		newTaskName.text = task.name;
 		taskName.text = task.name;
 
 		day = System.DateTime.Today.Day;
@@ -146,15 +154,23 @@ public class OptionsMenu : MonoBehaviour {
 	}
 
 	public void E_Confirm(){
-		System.DateTime deadlineDate = new System.DateTime (year, month, day, hour, minute, 0);
+		task.name = newTaskName.text;
+		if(taskPanel != null) taskPanel.taskNameLabel.text = task.name;
+		if(subTaskPanel != null) subTaskPanel.subtaskNameLabel.text = task.name;
+
+		DateTime deadlineDate = new DateTime (year, month, day, hour, minute, 0);
 		print ("DEADLINE: " + deadlineDate);
+
 		//TODO: build date and compare to today. if in the past, give error.
-		if(System.DateTime.Compare (deadlineDate, System.DateTime.Now) < 0){
+		if(DateTime.Compare (deadlineDate, DateTime.Now) < 0){
 			// if -1, invalid
 		}else{	
-			// give options to task we're editing
+			//TODO: give options to task we're editing
+
 			this.gameObject.SetActive(false);
 			task = null;
+			taskPanel = null;
+			subTaskPanel = null;
 		}
 	}
 }

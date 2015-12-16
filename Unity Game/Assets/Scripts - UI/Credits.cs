@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Credits : MonoBehaviour {
 
-	private float speed = 1;
+	private float speed = 5;
 	private int startPosY = -410;
 	private int endPosY = 1200;
 

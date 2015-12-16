@@ -21,6 +21,7 @@ public static class GameData {
 	public static List<Item> items = new List<Item>();
 	public static List<Task> tasks = new List<Task>();
 	public static List<Task> completedTasks = new List<Task>();
+	public static bool onTitleScreen = true;
 
 //	public static void TestInventory(){
 //		inventory.Add(new Item("Toy"));
@@ -32,9 +33,20 @@ public static class GameData {
 		/***** Monster */
 		// TODO: set properties saveData.monster.prop = GameData.activeMonster.prop;
 		SaveMonster savemon = new SaveMonster();
+		if(!activeMonster.hatched){
+			savemon.hatchTimeLeft = (int)activeMonster.hatchTime;
+		}
 		savemon.name = activeMonster.name;
 		savemon.hatched = activeMonster.hatched;
 		savemon.birthday = activeMonster.birthday;
+		savemon.hunger = activeMonster.hunger;
+
+		if(activeMonster.monsterController != null){
+			Vector3 mpos = activeMonster.position;
+			savemon.x = mpos.x;
+			savemon.y = mpos.y;
+			savemon.z = mpos.z;
+		}
 
 		saveData.monster = savemon;
 
@@ -42,14 +54,12 @@ public static class GameData {
 		List<SaveItem> saveItems = new List<SaveItem>();
 		foreach(Item item in items){
 			SaveItem si = new SaveItem();
-			Vector3 pos = item.itemBehavior.transform.position;
+			Vector3 pos = item.position;
 			si.x = pos.x;
-			si.y = pos.y;// + .1f;
+			si.y = pos.y;
 			si.z = pos.z;
-			item.position.x = pos.x;
-			item.position.y = pos.y;
-			item.position.z = pos.z;
 			si.type = (int)item.type;
+			si.foodType = item.foodType;
 			saveItems.Add (si);
 		}
 		saveData.items = saveItems;
@@ -91,11 +101,24 @@ public static class GameData {
 
 		/***** Monster */
 		activeMonster = new Monster();
+		if(!saveData.monster.hatched){
+			activeMonster.hatchTime = saveData.monster.hatchTimeLeft;
+			Debug.Log("GameData: I will hatch in " + activeMonster.hatchTime + " minutes!");
+		}
 		activeMonster.name = saveData.monster.name;
 		activeMonster.hatched = saveData.monster.hatched;
 		activeMonster.birthday = saveData.monster.birthday;
-		// TODO: 
-		// hatchtime float (int?)
+		activeMonster.hunger = saveData.monster.hunger;
+
+		if(saveData.monster.x != null){
+			Vector3 mpos = Vector3.zero;
+			
+			mpos.x = saveData.monster.x;
+			mpos.y = saveData.monster.y;
+			mpos.z = saveData.monster.z;
+
+			activeMonster.position = mpos;
+		}
 
 		/***** Items */
 		foreach(SaveItem si in saveData.items){
@@ -104,6 +127,7 @@ public static class GameData {
 			item.position.y = si.y;
 			item.position.z = si.z;
 			item.type = (ItemType)si.type;
+			item.foodType = si.foodType;
 			items.Add(item);
 		}
 

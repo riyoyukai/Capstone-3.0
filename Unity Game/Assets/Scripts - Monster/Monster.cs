@@ -4,8 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Monster {
-	private float hunger = 100; // percent
-	private bool hungry = false;
+	public float hunger = 100; // percent
+	public float hungerThreshold = 33;
+	public bool hungry = false;
 	public int xp = 0;
 	public int level = 1;
 	public int xpToNextLevel = 100;
@@ -15,6 +16,10 @@ public class Monster {
 	public bool hatched = false;
 	public DateTime birthday;
 	public string species = "Sprinkle";
+	public float hatchTime;
+	public float minHatchMinutes = 5;
+	public float maxHatchMinutes = 10;
+	public Vector3 position;
 
 	//private int sleepThisLong = 8; // hours
 	//private float sleepiness = 100; // percent
@@ -22,17 +27,22 @@ public class Monster {
 	//private bool asleep = false;
 
 	public Monster(){
-
+		hatchTime = Ease.RandomFloat(minHatchMinutes * 60, maxHatchMinutes * 60);
+		Debug.Log("I will hatch in " + hatchTime + " minutes!");
 	}
 
 	public void Update(){
-		hunger -= Time.deltaTime;
+		hunger -= (Time.deltaTime / 3); // TODO: this is 5 minutes ish right
 		//UIController.instance.UpdatePetStats(hunger);
-		if(!hungry && hunger/100 < .3){
-			hungry = true;
+		if(!hungry && Hungry()){
 //			UIController.instance.Alert("I'm hungry!");
-			if(monsterController != null) monsterController.BeginAnimFindFood();
+			hungry = true;
+			if(monsterController != null) monsterController.BeginAnimFindFood(true);
 		}
+	}
+
+	public bool Hungry(){
+		return hunger < hungerThreshold;
 	}
 
 	public void EatFood(){

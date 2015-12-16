@@ -17,6 +17,7 @@ public class GameStateManager : MonoBehaviour {
 	
 	public void GSM_SwitchToPlay(){
 		Application.LoadLevel ("Play");
+		GameData.onTitleScreen = false;
 	}
 	
 	public void GSM_LoadAndSwitchToPlay(){
@@ -40,5 +41,12 @@ public class GameStateManager : MonoBehaviour {
 
 	public void GSM_DeleteSave(){
 		Serializer.DeleteSave();
+	}
+
+	void OnApplicationQuit() {
+		if(!GameData.onTitleScreen){
+			Debug.Log("Application ending");
+			GameData.Save();
+		}
 	}
 }

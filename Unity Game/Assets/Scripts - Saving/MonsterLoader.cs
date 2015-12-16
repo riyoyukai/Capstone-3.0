@@ -9,10 +9,17 @@ public class MonsterLoader : MonoBehaviour {
 
 
 	void Start(){
-		if(GameData.activeMonster.hatched){ // idk wtf i am doinggg
+		if(GameData.activeMonster.hatched){
 			Destroy(egg.gameObject);
 			monster.gameObject.SetActive(true);
 			monster.SetUp(GameData.activeMonster);
+			if(GameData.activeMonster.Hungry()){
+				bool showPopup = true;
+				if(GameData.completedTasks.Count > 0) showPopup = false;
+				monster.BeginAnimFindFood(showPopup);
+			}
+		}else{
+//			egg.hatchTime = GameData.activeMonster.hatchTime;
 		}
 	}
 
