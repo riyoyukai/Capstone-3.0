@@ -7,7 +7,6 @@ public class ItemLoader : MonoBehaviour {
 
 	void Start () {		
 		if(GameData.items.Count > 0){
-			print ("loaded item data");
 			foreach(Item i in GameData.items){
 
 				GameObject newItem = Instantiate(

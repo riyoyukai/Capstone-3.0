@@ -13,9 +13,7 @@ public class TaskList : MonoBehaviour {
 
 	void Start(){
 		if(GameData.tasks.Count > 0){
-			print ("loaded data");
 			foreach(Task t in GameData.tasks){
-				print ("Looking at task \"" + t.name + "\"");
 				GameObject newTaskObject = Instantiate(
 					savedTaskItemPanelPrefab,
 					savedTaskItemPanelPrefab.transform.position,
@@ -47,7 +45,6 @@ public class TaskList : MonoBehaviour {
 					newSubtask.deleteButton.gameObject.SetActive(true);
 					newSubtask.task = st;
 					newSubtask.parentTask = newTask;
-					print ("st.name: " + st.name);
 					newSubtask.subtaskNameLabel.text = st.name;
 
 					newSubtaskObject.transform.SetParent(newTask.subtaskPanelGrid.transform, false);
@@ -56,9 +53,10 @@ public class TaskList : MonoBehaviour {
 					newTask.subtaskPanels.Add (newSubtask);
 				}
 			}
-		}else{
-			print ("didn't load data");
 		}
+//		else{
+//			print ("didn't load data");
+//		}
 	}
 
 	public void AddTask(TaskPanel taskPanel){

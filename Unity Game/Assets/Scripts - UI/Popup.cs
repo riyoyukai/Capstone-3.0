@@ -35,7 +35,8 @@ public class Popup : MonoBehaviour {
 		if(GameData.tasks.Count > 0){
 			// suggest task based on deadline
 			Task t = GameData.tasks[Ease.RandomInt(0, GameData.tasks.Count)];
-			doTaskText.text = "";
+			doTaskText.text = "If you need a suggestion on which task to complete, how about this one? \""
+				+ t.name + "\"";
 		}else{
 			// go create a task
 			doTaskText.text = "You have no tasks! Can you create and complete a task so I can eat?";

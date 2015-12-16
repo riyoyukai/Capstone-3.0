@@ -10,7 +10,6 @@ public class EggBehavior : MonoBehaviour {
 
 	void Start () {
 		hatchTime = GameData.activeMonster.hatchTime;
-		print (hatchTime);
 	}
 
 	void Update () {

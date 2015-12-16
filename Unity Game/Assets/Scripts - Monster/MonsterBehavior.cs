@@ -35,7 +35,7 @@ public class MonsterBehavior : MonoBehaviour {
 	private Vector3 facingLeft = new Vector3(0, 179, 0);
 	private Vector3 facingRight = new Vector3(0, 1, 0);
 	private Vector3 facingAway = new Vector3(0, 270, 0);
-	private Vector3 facingForward = new Vector3(0, 90, 0);
+//	private Vector3 facingForward = new Vector3(0, 90, 0);
 	
 	private AnimState lastState = AnimState.Walk;
 	private AnimState state = AnimState.Walk;
@@ -56,7 +56,6 @@ public class MonsterBehavior : MonoBehaviour {
 
 	// variable for delay on hungry popup
 	float hungryPopupDelay = 0;
-	bool alreadySleeping = false;
 
 	// link to monster class
 	private Monster monster;
@@ -71,7 +70,6 @@ public class MonsterBehavior : MonoBehaviour {
 		monster = GameData.activeMonster;
 		monster.monsterController = this;
 		if(state != AnimState.Sleep) BeginAnimIdle();
-		else alreadySleeping = true;
 	}
 
 	public void SetUp(Monster m){
@@ -142,7 +140,6 @@ public class MonsterBehavior : MonoBehaviour {
 	}
 	
 	private void BeginAnimEat(){
-		print("Eating...");
 		ChangeState(AnimState.Eat);
 		eatTimer = 3f;
 	}
@@ -151,8 +148,9 @@ public class MonsterBehavior : MonoBehaviour {
 		eatTimer -= Time.deltaTime;
 		if(eatTimer <= 0){
 			eatTimer = 0;
-			print ("Done eating, time to react!");
+//			print ("Done eating, time to react!");
 			monster.EatFood();
+			monster.care++;
 			GameData.items.Remove(targetItem.item);
 			Destroy(targetItem.gameObject);
 			// TODO: polite/rude reaction here
@@ -206,7 +204,6 @@ public class MonsterBehavior : MonoBehaviour {
 	}
 
 	private void BeginAnimIdle(){
-		print ("Idling...");
 		ChangeState(AnimState.Idle);
 		idleTimer = Ease.RandomFloat(idleTimerMin, idleTimerMax);
 	}
@@ -247,7 +244,6 @@ public class MonsterBehavior : MonoBehaviour {
 	private void BeginAnimSleep(bool showPopup){
 		ChangeState (AnimState.Sleep);
 		if(showPopup) hungryPopupDelay = 3f;
-		print("Sleeping...");
 	}
 
 	private void AnimSleep(){
@@ -274,7 +270,6 @@ public class MonsterBehavior : MonoBehaviour {
 		// Also, reset animation variables.
 		Vector3 destination;
 		if(target != null){
-			print ("Finding food...");
 			targetItem = target;
 			ChangeState(AnimState.FindFood);
 			destination = target.transform.position;

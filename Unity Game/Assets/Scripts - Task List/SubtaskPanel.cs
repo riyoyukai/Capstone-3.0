@@ -67,8 +67,6 @@ public class SubtaskPanel : MonoBehaviour {
 	}
 	
 	public void EditTask(){
-		print ("Task: " + this.task);
-		print ("Options: " + optionsMenu);
 		optionsMenu.Open(null, this);
 	}
 	

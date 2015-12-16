@@ -7,10 +7,6 @@ public class GameStateManager : MonoBehaviour {
 		Application.LoadLevel ("Title");
 	}
 	
-	public void GSM_SwitchToOptions(){
-		Application.LoadLevel ("Options");
-	}
-	
 	public void GSM_SwitchToCredits(){
 		Application.LoadLevel ("Credits");
 	}

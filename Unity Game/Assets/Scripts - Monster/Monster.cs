@@ -20,6 +20,7 @@ public class Monster {
 	public float minHatchMinutes = 5;
 	public float maxHatchMinutes = 10;
 	public Vector3 position;
+	public int care = 0;
 
 	//private int sleepThisLong = 8; // hours
 	//private float sleepiness = 100; // percent

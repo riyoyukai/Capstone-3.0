@@ -55,7 +55,6 @@ public class ItemBehavior : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		if (trash.Raycast(ray, out hit, 100.0F)){
-			print ("Trash item");
 			GameData.items.Remove(item);
 			Destroy (this.gameObject);
 			GameData.Save();

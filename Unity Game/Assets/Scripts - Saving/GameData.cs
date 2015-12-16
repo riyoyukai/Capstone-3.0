@@ -40,6 +40,7 @@ public static class GameData {
 		savemon.hatched = activeMonster.hatched;
 		savemon.birthday = activeMonster.birthday;
 		savemon.hunger = activeMonster.hunger;
+		savemon.care = activeMonster.care;
 
 		if(activeMonster.monsterController != null){
 			Vector3 mpos = activeMonster.position;
@@ -109,6 +110,7 @@ public static class GameData {
 		activeMonster.hatched = saveData.monster.hatched;
 		activeMonster.birthday = saveData.monster.birthday;
 		activeMonster.hunger = saveData.monster.hunger;
+		activeMonster.care = saveData.monster.care;
 
 		if(saveData.monster.x != null){
 			Vector3 mpos = Vector3.zero;

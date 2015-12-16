@@ -10,6 +10,7 @@ public class SaveMonster {
 	public int hatchTimeLeft;
 	public DateTime birthday;
 	public float hunger;
+	public int care;
 	
 	public float x;
 	public float y;
